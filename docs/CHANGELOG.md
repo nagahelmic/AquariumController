@@ -13,3 +13,4 @@ All notable changes to this project will be documented here.
 - ESP32 configuration
 - Library configuration
 - Initial roadmap
+- github 
