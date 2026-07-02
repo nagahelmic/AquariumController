@@ -34,15 +34,15 @@ Status: **Completed**
 
 - [x] Create `Version.h`
 - [x] Create `Config.h`
-- [ ] Create `Pins.h`
+- [x] Create `Pins.h`
 
 ## Architecture
 
 - [x] Create Application module
 - [x] Create CODING_STANDARTS.md
-- [ ] Prepare project skeleton
+- [x] Prepare project skeleton
 
-Status: **Planned**
+Status: **Completed**
 
 ---
 
