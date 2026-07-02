@@ -205,3 +205,81 @@ void loop()
 ```
 
 This improves readability, maintainability and testability.
+
+# ADR-008
+
+## Decision
+
+Choose the C++ abstraction based on the responsibility of the component.
+
+## Rules
+
+- Use `namespace` for logical grouping of constants and utility functions.
+- Use `struct` for simple data structures.
+- Use `class` for objects with behavior, encapsulation and responsibility.
+
+## Reason
+
+Choosing the correct abstraction improves readability, maintainability and scalability.
+
+The decision is based on the purpose of the component rather than implementation details.
+
+Examples:
+
+Version -> namespace
+
+Pins -> namespace
+
+Config -> struct
+
+TemperatureReading -> struct
+
+DisplayManager -> class
+
+TemperatureManager -> class
+
+# ADR-009
+
+## Decision
+
+Configuration is represented as a `struct`.
+
+## Reason
+
+Configuration values can change during runtime and may later be loaded from or saved to non-volatile memory.
+
+Therefore configuration is data, not a collection of constants.
+
+Examples:
+
+- Temperature limits
+- Wi-Fi credentials
+- Display settings
+- Measurement interval
+
+# ADR-010
+
+## Decision
+
+Configuration is divided into smaller configuration structures.
+
+## Reason
+
+A single large configuration structure would become hard to read and maintain as the project grows.
+
+Smaller configuration structures improve:
+
+- readability
+- maintainability
+- module separation
+- future web configuration
+- future storage handling
+
+Examples:
+
+- TemperatureConfig
+- DisplayConfig
+- AlarmConfig
+- WifiConfig
+
+The main Config structure combines smaller configuration parts.

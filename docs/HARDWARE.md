@@ -13,7 +13,14 @@ ESP32 DevKitC 38 pin
 SH1106
 I2C
 
----
+#### Preferované piny
+- I2C → GPIO21 (SDA), GPIO22 (SCL)
+- OneWire → GPIO4 (pokud nebude důvod použít jiný)
+
+#### Nepoužívat
+- GPIO6–11 (Flash)
+- GPIO1 a GPIO3 (UART)
+- GPIO0 (BOOT), pokud to není nezbytné
 
 ## Temperature Sensors
 

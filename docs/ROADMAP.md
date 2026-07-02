@@ -32,7 +32,7 @@ Status: **Completed**
 
 ## Core
 
-- [ ] Create `Version.h`
+- [x] Create `Version.h`
 - [ ] Create `Config.h`
 - [ ] Create `Pins.h`
 
