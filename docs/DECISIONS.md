@@ -283,3 +283,24 @@ Examples:
 - WifiConfig
 
 The main Config structure combines smaller configuration parts.
+
+# ADR-011
+
+## Decision
+
+Use `Application` as the main firmware controller class.
+
+## Reason
+
+`Application` owns the main runtime structure of the firmware.
+
+It is responsible for:
+
+- holding global application settings
+- initializing modules
+- calling module update functions
+- keeping `main.cpp` small
+
+It must not contain hardware-specific logic directly.
+
+Hardware features such as display, temperature, Wi-Fi and web server will be implemented in separate modules.

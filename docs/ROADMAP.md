@@ -33,13 +33,13 @@ Status: **Completed**
 ## Core
 
 - [x] Create `Version.h`
-- [ ] Create `Config.h`
+- [x] Create `Config.h`
 - [ ] Create `Pins.h`
 
 ## Architecture
 
-- [ ] Create Core module
-- [ ] Define coding conventions
+- [x] Create Application module
+- [x] Create CODING_STANDARTS.md
 - [ ] Prepare project skeleton
 
 Status: **Planned**
