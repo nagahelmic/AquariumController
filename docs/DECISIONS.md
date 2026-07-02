@@ -304,3 +304,17 @@ It is responsible for:
 It must not contain hardware-specific logic directly.
 
 Hardware features such as display, temperature, Wi-Fi and web server will be implemented in separate modules.
+
+# ADR-012
+
+## Decision
+
+Display is implemented as a class.
+
+## Reason
+
+Display is responsible for controlling the display module.
+
+It will manage initialization, screen state and rendering.
+
+Display must not read sensors or handle Wi-Fi directly.

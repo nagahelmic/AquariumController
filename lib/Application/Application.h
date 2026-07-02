@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Config.h"
+#include "Display.h"
 
 class Application
 {
@@ -10,4 +11,5 @@ public:
 
 private:
     Config::Settings settings;
+    Display display;
 };

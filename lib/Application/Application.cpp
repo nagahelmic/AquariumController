@@ -14,18 +14,11 @@ void Application::begin()
 
     Serial.println("Application started");
 
-    Serial.println("Pins:");
-    Serial.print("OLED SDA: ");
-    Serial.println(Pins::Display::Sda);
-
-    Serial.print("OLED SCL: ");
-    Serial.println(Pins::Display::Scl);
-
-    Serial.print("OneWire bus: ");
-    Serial.println(Pins::Temperature::OneWireBus);
+    display.begin();
 }
 
 void Application::update()
 {
+    display.update();
     delay(1000);
 }
