@@ -11,18 +11,18 @@
 
 # 🚧 Project Status
 
-**Current Version:** `v0.1.0`
+**Current Version:** `v0.2.0`
 
 **Development Progress**
 
 ```text
-█░░░░░░░░░ 10%
+█░░░░░░░░░ 20%
 ```
 
 Status:
 
 - ✅ Development environment ready
-- 🚧 Project foundation in progress
+- ✅ Project foundation in progress
 - ⬜ Hardware implementation
 - ⬜ First release
 
