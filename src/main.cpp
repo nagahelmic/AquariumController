@@ -1,12 +1,14 @@
 #include <Arduino.h>
+#include <Version.h>
 
 void setup() {
     Serial.begin(115200);
 
     Serial.println();
     Serial.println("==============================");
-    Serial.println(" AquariumController");
-    Serial.println(" PlatformIO test");
+    Serial.println(Version::Name);
+    Serial.println("Version: ");
+    Serial.println(Version::String);
     Serial.println("==============================");
 }
 

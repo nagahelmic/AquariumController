@@ -1,78 +1,148 @@
-# AquariumController Roadmap
+# 🗺 AquariumController Roadmap
 
-## Phase 0 - Development Environment
+Project roadmap and development milestones.
 
-- [x] VS Code installed
-- [x] PlatformIO installed
-- [x] Project created
+---
+
+# v0.1.0 - Project Initialization ✅
+
+## Development Environment
+
+- [x] VS Code
+- [x] PlatformIO
+- [x] GitHub
 - [x] PlatformIO build successful
-- [ ] Git initialized
-- [ ] First commit
+
+## Documentation
+
+- [x] README
+- [x] ROADMAP
+- [x] REQUIREMENTS
+- [x] ARCHITECTURE
+- [x] HARDWARE
+- [x] DECISIONS
+- [x] CHANGELOG
+- [x] IDEAS
+
+Status: **Completed**
 
 ---
 
-## Phase 1 - Project Foundation
+# v0.2.0 - Project Foundation
 
-- [x] Create docs folder
-- [x] Create ROADMAP.md
-- [x] Create CHANGELOG.md
-- [x] Create IDEAS.md
-- [x] Create DECISIONS.md
-- [x] Create ARCHITECTURE.md
-- [x] Create HARDWARE.md
-- [x] Create REQUIREMENTS.md
+## Core
 
----
+- [ ] Create `Version.h`
+- [ ] Create `Config.h`
+- [ ] Create `Pins.h`
 
-## Phase 2 - Basic Project Structure
+## Architecture
 
-- [ ] Create `include/Version.h`
-- [ ] Create `include/Pins.h`
-- [ ] Create `include/Config.h`
+- [ ] Create Core module
+- [ ] Define coding conventions
+- [ ] Prepare project skeleton
+
+Status: **Planned**
 
 ---
 
-## Phase 3 - Display Module
+# v0.3.0 - Display
+
+## OLED
 
 - [ ] Create Display module
-- [ ] Test OLED text output
+- [ ] Display initialization
+- [ ] Hello World
+- [ ] Display test
+
+Status: **Planned**
 
 ---
 
-## Phase 4 - Temperature Module
+# v0.4.0 - Temperature
+
+## DS18B20
 
 - [ ] Create Temperature module
-- [ ] Test first DS18B20
-- [ ] Test second DS18B20
+- [ ] Detect sensors
+- [ ] Read first sensor
+- [ ] Read second sensor
+- [ ] Temperature test
+
+Status: **Planned**
 
 ---
 
-## Phase 5 - Integration
+# v0.5.0 - Display Integration
 
-- [ ] Show both temperatures on display
+- [ ] Show both temperatures
+- [ ] Refresh display every second
+- [ ] Handle sensor errors
 
----
-
-## Phase 6 - WiFi
-
-- [ ] Connect ESP32 to WiFi
-- [ ] Print IP address to Serial Monitor
+Status: **Planned**
 
 ---
 
-## Phase 7 - Web Interface
+# v0.6.0 - Wi-Fi
 
-- [ ] Create basic web server
-- [ ] Show temperatures in browser
+- [ ] Connect to Wi-Fi
+- [ ] Automatic reconnect
+- [ ] Display IP address
+
+Status: **Planned**
 
 ---
 
-## Future Ideas
+# v0.7.0 - Web Interface
 
+- [ ] HTTP server
+- [ ] Dashboard
+- [ ] JSON API
+
+Status: **Planned**
+
+---
+
+# v0.8.0 - Configuration
+
+- [ ] Store settings
+- [ ] Load settings
+- [ ] Web configuration
+
+Status: **Planned**
+
+---
+
+# v0.9.0 - Alarm System
+
+- [ ] Temperature limits
+- [ ] Notifications
+- [ ] Alarm handling
+
+Status: **Planned**
+
+---
+
+# v1.0.0 - First Stable Release
+
+- [ ] Stable firmware
+- [ ] Documentation complete
+- [ ] Release on GitHub
+
+Status: **Future**
+
+---
+
+# 🔮 Future
+
+- [ ] OTA Updates
+- [ ] MQTT
+- [ ] Home Assistant
 - [ ] Temperature history
 - [ ] Graphs
-- [ ] Alarms
+- [ ] pH sensor
+- [ ] Water level sensor
+- [ ] Conductivity sensor
 - [ ] Heater control
 - [ ] Lighting control
 - [ ] Mobile notifications
-- [ ] Home Assistant / MQTT
