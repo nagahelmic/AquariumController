@@ -15,6 +15,7 @@ void Application::begin()
     Serial.println("Application started");
 
     display.begin();
+    display.render();
 }
 
 void Application::update()

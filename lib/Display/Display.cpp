@@ -10,3 +10,8 @@ void Display::update()
 {
     // Display update logic will be added later.
 }
+
+void Display::render()
+{
+    Serial.println("Display render called");
+}
