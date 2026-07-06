@@ -305,16 +305,35 @@ It must not contain hardware-specific logic directly.
 
 Hardware features such as display, temperature, Wi-Fi and web server will be implemented in separate modules.
 
-# ADR-012
+# ADR-012: Use Display as a dedicated display module
 
 ## Decision
 
-Display is implemented as a class.
+The OLED display is controlled by a dedicated `Display` class.
+
+The `Display` module is responsible for:
+
+- initializing the OLED display,
+- owning the display driver/library object,
+- rendering data to the screen.
+
+Display rendering data is passed through a dedicated `DisplayData` structure:
+
+`include/DisplayData.h`
+
+The `Display` module receives this data through:
+
+`render(const DisplayData& data)`
 
 ## Reason
 
-Display is responsible for controlling the display module.
+The display is a separate hardware component with its own initialization and rendering logic.
 
-It will manage initialization, screen state and rendering.
+Keeping this logic inside a dedicated `Display` class keeps `Application` simple and prevents display-specific code from spreading across the project.
 
-Display must not read sensors or handle Wi-Fi directly.
+`DisplayData` acts as a clear contract between `Application` and `Display`.
+
+The `Display` module should not read sensors, Wi-Fi state or alarm state directly.  
+Those values are collected by `Application` and passed to `Display` as rendering data.
+
+This keeps modules loosely coupled and easier to change later.

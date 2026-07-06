@@ -11,6 +11,7 @@ namespace Config {
 
     struct Display {
         uint8_t brightness = 255;
+        uint32_t refreshIntervalMs = 1000;
     };
 
     struct Alarm {

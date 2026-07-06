@@ -15,11 +15,26 @@ void Application::begin()
     Serial.println("Application started");
 
     display.begin();
-    display.render();
+    
 }
 
 void Application::update()
 {
+    const uint32_t now = millis();
+
     display.update();
-    delay(1000);
+
+    if (displayRefreshTimer.isReady(now, settings.display.refreshIntervalMs))
+    {
+        updateDisplayData();
+        display.render(displaydata);
+    }
 }
+
+ void Application::updateDisplayData()
+ {
+    displaydata.waterTemperature1 = 24.5f;
+    displaydata.waterTemperature2 = 24.8f;
+    displaydata.wifiConected = false;
+    displaydata.alarmActive = false;
+ }
