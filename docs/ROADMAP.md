@@ -50,12 +50,11 @@ Status: **Completed**
 
 ## OLED
 
-- [ ] Create Display module
-- [ ] Display initialization
-- [ ] Hello World
-- [ ] Display test
+- [x] Create Display module
+- [x] Display initialization
+- [x] Display test
 
-Status: **Planned**
+Status: **Completed**
 
 ---
 

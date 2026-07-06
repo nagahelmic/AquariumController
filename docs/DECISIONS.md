@@ -337,3 +337,20 @@ The `Display` module should not read sensors, Wi-Fi state or alarm state directl
 Those values are collected by `Application` and passed to `Display` as rendering data.
 
 This keeps modules loosely coupled and easier to change later.
+
+# ADR-013: Use non-blocking interval timing
+
+## Decision
+
+Periodic tasks will use non-blocking timing based on `millis()`.
+
+A reusable `IntervalTimer` class is used to decide whether a task should run.
+
+Example:
+
+```cpp
+if (displayRefreshTimer.isReady(now, settings.display.refreshIntervalMs))
+{
+    updateDisplayData();
+    display.render(displayData);
+}

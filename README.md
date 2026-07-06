@@ -11,20 +11,26 @@
 
 # 🚧 Project Status
 
-**Current Version:** `v0.2.0`
+**Current Version:** `v0.3.0`
 
 **Development Progress**
 
 ```text
-█░░░░░░░░░ 20%
+█░░░░░░░░░ 30%
 ```
 
-Status:
+Completed modules:
 
-- ✅ Development environment ready
-- ✅ Project foundation in progress
-- ⬜ Hardware implementation
-- ⬜ First release
+- ✅ Version
+- ✅ Config
+- ✅ Pins
+- ✅ Application
+- ✅ Display
+- ✅ Timing
+
+Next milestone:
+
+**v0.4.0 – Temperature**
 
 ---
 
