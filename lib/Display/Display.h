@@ -20,6 +20,7 @@ class Display
             const TemperatureReading& reading
         );
 
-
-    Adafruit_SH1106G oled = Adafruit_SH1106G(128, 64, &Wire, -1);
+        void drawWifiIcon(int16_t x, int16_t y, bool connected);
+        
+        Adafruit_SH1106G oled = Adafruit_SH1106G(128, 64, &Wire, -1);
 };

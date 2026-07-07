@@ -7,7 +7,7 @@ struct DisplayData
     TemperatureReading waterTemperature1;
     TemperatureReading waterTemperature2;
     
-    bool wifiConected = false;
+    bool wifiConnected = false;
     bool alarmActive = false;
 };
 

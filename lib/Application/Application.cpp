@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "Version.h"
 #include "Pins.h"
+#include "Secrets.h"
 
 void Application::begin()
 {
@@ -16,6 +17,7 @@ void Application::begin()
 
     display.begin();
     temperature.begin();
+    wifi.begin(Secrets::WifiSsid, Secrets::WifiPassword);
     
 }
 
@@ -24,6 +26,7 @@ void Application::update()
     const uint32_t now = millis();
 
     display.update();
+    wifi.update();
 
     if (temperatureMeasurementTimer.isReady(now, settings.temperature.measurementIntervalMs))
     {
@@ -44,6 +47,6 @@ void Application::update()
     //Temperature Senzor 2
     displayData.waterTemperature2 = temperature.getWaterTemperature2();
 
-    displayData.wifiConected = false;
+    displayData.wifiConnected = wifi.isConnected();
     displayData.alarmActive = false;
  }

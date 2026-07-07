@@ -5,6 +5,7 @@
 #include "DisplayData.h"
 #include "IntervalTimer.h"
 #include "Temperature.h"
+#include "WifiConnection.h"
 
 class Application
 {
@@ -23,4 +24,5 @@ private:
     IntervalTimer temperatureMeasurementTimer;
 
     Temperature temperature;
+    WifiConnection wifi;
 };
