@@ -31,15 +31,6 @@ void Display::render(const DisplayData& data) {
     drawTemperatureLine(0, 0, "T1", data.waterTemperature1);
     drawTemperatureLine(0, 24, "T2", data.waterTemperature2);
 
-    oled.setTextSize(1);
-    oled.setCursor(0, 56);
-
-    oled.print("Wifi: ");
-    oled.print(data.wifiConected ? "OK" : "OFF");
-
-    oled.print("  Alarm: ");
-    oled.print(data.alarmActive ? "YES" : "NO");
-
     oled.display();
 }
 
