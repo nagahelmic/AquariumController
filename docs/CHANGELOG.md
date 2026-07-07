@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented here.
 
+## v0.5.0 - Display Integration
+
+### Changed
+
+#### Display
+- Improved main screen layout.
+- Made temperature readings the primary content on the OLED display.
+- Removed inactive Wi-Fi and alarm indicators from the main screen.
+- Extracted temperature line rendering into a dedicated helper method.
+
+#### Display Integration
+- Display now focuses only on currently implemented functionality.
+- Invalid temperature readings continue to be displayed as `ERROR`.
+
+### Tested
+- Successfully tested improved OLED layout.
+- Successfully verified valid temperature rendering.
+- Successfully verified invalid temperature rendering.
+- Successfully tested layout on real SH1106 OLED hardware.
+
 ---
 ## v0.4.0 - Temperature
 

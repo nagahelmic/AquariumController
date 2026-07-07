@@ -81,11 +81,15 @@ Status: **Completed**
 
 # v0.5.0 - Display Integration
 
-- [ ] Show both temperatures
-- [ ] Refresh display every second
-- [ ] Handle sensor errors
+## Display Rendering
+- [x] Display real temperature readings from `Temperature` module
+- [x] Display invalid temperature readings as `ERROR`
+- [x] Extract temperature line rendering into helper method
+- [x] Improve main screen layout
+- [x] Make temperature values the primary display content
+- [x] Remove inactive Wi-Fi and alarm indicators from main screen
 
-Status: **Planned**
+Status: **Completed**
 
 ---
 

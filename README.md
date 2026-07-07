@@ -15,7 +15,7 @@
 
 Current project version:
 
-**v0.4.0 – Temperature**
+**v0.5.0 – Display Integration**
 
 Completed modules:
 
@@ -26,6 +26,7 @@ Completed modules:
 - ✅ Display
 - ✅ Timing
 - ✅ Temperature
+
 
 ---
 
