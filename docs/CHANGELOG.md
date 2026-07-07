@@ -3,17 +3,85 @@
 All notable changes to this project will be documented here.
 
 ---
-
-## v0.1.0 - Project initialization
+## v0.4.0 - Temperature
 
 ### Added
 
-- VS Code project
-- PlatformIO
-- ESP32 configuration
-- Library configuration
-- Initial roadmap
-- github 
+#### Temperature
+- Added dedicated `Temperature` module.
+- Added OneWire bus initialization.
+- Added DallasTemperature library integration.
+- Added DS18B20 sensor detection.
+- Added DS18B20 sensor address scanning.
+- Added fixed-address DS18B20 sensor reading.
+- Added support for two configured water temperature sensors.
+- Added `TemperatureReading` structure with value and validity state.
+- Added invalid sensor handling.
+- Added temperature measurement timer using `IntervalTimer`.
+
+#### Display Integration
+- Updated `DisplayData` to use `TemperatureReading`.
+- Display now shows real measured temperature values.
+- Display now shows `ERROR` when a temperature reading is invalid.
+
+#### Configuration
+- Added DS18B20 sensor addresses to temperature configuration.
+- Reused existing temperature measurement interval configuration.
+
+### Changed
+
+#### Application
+- Added `Temperature` module integration.
+- Added `temperatureMeasurementTimer`.
+- Updated `updateDisplayData()` to use measured temperature readings instead of test values.
+
+### Documentation
+- Added ADR-014 for keeping the `Temperature` module focused on measurement only.
+- Added ADR-015 for representing temperature readings with validity state.
+- Added ADR-016 for identifying DS18B20 sensors by address.
+
+### Tested
+- Successfully detected two DS18B20 sensors.
+- Successfully read temperature values from both sensors.
+- Successfully displayed real temperature values on OLED.
+- Successfully tested one disconnected sensor state.
+- Successfully tested both disconnected sensors state.
+- Successfully verified recovery after reconnecting sensors.
+
+---
+
+
+## v0.3.0 - Display
+
+### Added
+
+#### Display
+- Added dedicated `Display` module.
+- Added SH1106 OLED support.
+- Added OLED initialization.
+- Added first OLED rendering output.
+- Added `DisplayData` structure for display rendering.
+- Added `render(const DisplayData& data)` API.
+- Added display refresh interval configuration.
+
+#### Timing
+- Added reusable `IntervalTimer` class.
+- Added non-blocking timing based on `millis()`.
+
+### Changed
+
+#### Application
+- Moved display rendering from `Application::begin()` to `Application::update()`.
+- Added `updateDisplayData()` helper method.
+- Replaced blocking `delay()` with non-blocking interval timing.
+
+#### Display
+- Removed repeated Serial logging from `Display::render()`.
+- Display now renders data received from `Application` instead of using hardcoded values only.
+
+### Documentation
+- Updated ADR-012 with display ownership and `DisplayData` rendering contract.
+- Added ADR-013 for non-blocking interval timing.
 
 ---
 
@@ -47,34 +115,15 @@ All notable changes to this project will be documented here.
 - Successfully built firmware.
 - Successfully tested on real ESP32 hardware.
 
-## v0.3.0 - Display
+---
+
+## v0.1.0 - Project initialization
 
 ### Added
 
-#### Display
-- Added dedicated `Display` module.
-- Added SH1106 OLED support.
-- Added OLED initialization.
-- Added first OLED rendering output.
-- Added `DisplayData` structure for display rendering.
-- Added `render(const DisplayData& data)` API.
-- Added display refresh interval configuration.
-
-#### Timing
-- Added reusable `IntervalTimer` class.
-- Added non-blocking timing based on `millis()`.
-
-### Changed
-
-#### Application
-- Moved display rendering from `Application::begin()` to `Application::update()`.
-- Added `updateDisplayData()` helper method.
-- Replaced blocking `delay()` with non-blocking interval timing.
-
-#### Display
-- Removed repeated Serial logging from `Display::render()`.
-- Display now renders data received from `Application` instead of using hardcoded values only.
-
-### Documentation
-- Updated ADR-012 with display ownership and `DisplayData` rendering contract.
-- Added ADR-013 for non-blocking interval timing.
+- VS Code project
+- PlatformIO
+- ESP32 configuration
+- Library configuration
+- Initial roadmap
+- github 

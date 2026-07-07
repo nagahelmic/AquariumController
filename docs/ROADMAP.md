@@ -60,15 +60,22 @@ Status: **Completed**
 
 # v0.4.0 - Temperature
 
-## DS18B20
+## Temperature Sensors
+- [x] Create `Temperature` module
+- [x] Initialize OneWire bus
+- [x] Initialize DallasTemperature library
+- [x] Detect DS18B20 sensors
+- [x] Print DS18B20 sensor addresses
+- [x] Identify DS18B20 sensors by fixed hardware address
+- [x] Read temperature values from configured sensor addresses
+- [x] Store readings as `TemperatureReading`
+- [x] Handle invalid or disconnected sensors
+- [x] Add temperature measurement interval using `IntervalTimer`
+- [x] Pass measured temperature data to `DisplayData`
+- [x] Show real temperature values on OLED
+- [x] Show `ERROR` when a sensor is disconnected
 
-- [ ] Create Temperature module
-- [ ] Detect sensors
-- [ ] Read first sensor
-- [ ] Read second sensor
-- [ ] Temperature test
-
-Status: **Planned**
+Status: **Completed**
 
 ---
 

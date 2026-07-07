@@ -15,6 +15,7 @@ void Application::begin()
     Serial.println("Application started");
 
     display.begin();
+    temperature.begin();
     
 }
 
@@ -24,17 +25,25 @@ void Application::update()
 
     display.update();
 
+    if (temperatureMeasurementTimer.isReady(now, settings.temperature.measurementIntervalMs))
+    {
+        temperature.update(settings.temperature);
+    }
+
     if (displayRefreshTimer.isReady(now, settings.display.refreshIntervalMs))
     {
         updateDisplayData();
-        display.render(displaydata);
+        display.render(displayData);
     }
 }
 
  void Application::updateDisplayData()
  {
-    displaydata.waterTemperature1 = 24.5f;
-    displaydata.waterTemperature2 = 24.8f;
-    displaydata.wifiConected = false;
-    displaydata.alarmActive = false;
+    //Temperature Senzor 1
+    displayData.waterTemperature1 = temperature.getWaterTemperature1();
+    //Temperature Senzor 2
+    displayData.waterTemperature2 = temperature.getWaterTemperature2();
+
+    displayData.wifiConected = false;
+    displayData.alarmActive = false;
  }

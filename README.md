@@ -11,13 +11,11 @@
 
 # 🚧 Project Status
 
-**Current Version:** `v0.3.0`
+## Current Status
 
-**Development Progress**
+Current project version:
 
-```text
-█░░░░░░░░░ 30%
-```
+**v0.4.0 – Temperature**
 
 Completed modules:
 
@@ -27,10 +25,7 @@ Completed modules:
 - ✅ Application
 - ✅ Display
 - ✅ Timing
-
-Next milestone:
-
-**v0.4.0 – Temperature**
+- ✅ Temperature
 
 ---
 

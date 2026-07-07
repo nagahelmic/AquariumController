@@ -354,3 +354,69 @@ if (displayRefreshTimer.isReady(now, settings.display.refreshIntervalMs))
     updateDisplayData();
     display.render(displayData);
 }
+```
+# ADR-014: Keep Temperature module focused on measurement only
+
+## Decision
+
+The `Temperature` module will be responsible only for temperature measurement.
+
+It will:
+
+- initialize the OneWire bus,
+- initialize DS18B20 sensors,
+- read temperature values,
+- store the latest measured values,
+- provide measured values to `Application`.
+
+It will not evaluate alarms.
+
+## Reason
+
+Temperature measurement and alarm evaluation are different responsibilities.
+
+The `Temperature` module should only provide measured data.
+
+Alarm logic will be implemented later in a dedicated `Alarm` module.
+
+This keeps the project modular and prevents sensor code from being mixed with decision logic.
+
+# ADR-015: Represent temperature readings with validity state
+
+## Decision
+
+Temperature values will be represented by a dedicated `TemperatureReading` structure.
+
+Each reading contains:
+
+- measured temperature value in Celsius,
+- information whether the value is valid.
+
+Example:
+
+```cpp
+struct TemperatureReading
+{
+    float valueCelsius = 0.0f;
+    bool valid = false;
+};
+```
+
+# ADR-016: Identify DS18B20 sensors by address
+
+## Decision
+
+DS18B20 sensors will be identified by their unique hardware addresses.
+
+The firmware will not rely on sensor order on the OneWire bus for normal operation.
+
+## Reason
+
+Sensor order on the OneWire bus may change depending on wiring, timing or device discovery.
+
+Using unique DS18B20 addresses makes sensor assignment stable and explicit.
+
+This allows the firmware to reliably distinguish between individual sensors, such as:
+
+- aquarium water temperature sensor,
+- secondary water temperature sensor.

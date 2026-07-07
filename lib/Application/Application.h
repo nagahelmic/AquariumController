@@ -4,6 +4,7 @@
 #include "Display.h"
 #include "DisplayData.h"
 #include "IntervalTimer.h"
+#include "Temperature.h"
 
 class Application
 {
@@ -16,7 +17,10 @@ private:
 
     Config::Settings settings;
     Display display;
-    DisplayData displaydata;
+    DisplayData displayData;
 
     IntervalTimer displayRefreshTimer;
+    IntervalTimer temperatureMeasurementTimer;
+
+    Temperature temperature;
 };

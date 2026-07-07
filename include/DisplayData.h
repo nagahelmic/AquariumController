@@ -1,10 +1,12 @@
 #pragma once
 
+#include "TemperatureReading.h"
+
 struct DisplayData
 {
-    float waterTemperature1 = 0.0f;
-    float waterTemperature2 = 0.0f;
-
+    TemperatureReading waterTemperature1;
+    TemperatureReading waterTemperature2;
+    
     bool wifiConected = false;
     bool alarmActive = false;
 };
