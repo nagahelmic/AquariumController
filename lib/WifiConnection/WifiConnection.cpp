@@ -5,43 +5,55 @@
 
 void WifiConnection::begin(const char* ssid, const char* password)
 {
-    Serial.println("WiFi connecting...");
+    this->ssid = ssid;
+    this->password = password;
+    configured = true;
 
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(ssid, password);
-
-    connectionStarted = true;
+    startConnection();
 }
 
-void WifiConnection::update()
+void WifiConnection::update(const Config::Wifi& config)
 {
-    if (!connectionStarted)
+    if (!configured)
     {
         return;
     }
 
     const bool connected = isConnected();
 
-    if (connected == lastConnectedState)
+    if (connected != lastConnectedState)
     {
-        return;
+        lastConnectedState = connected;
+
+        if (connected)
+        {
+            Serial.println("WiFi connected");
+            Serial.print("IP address: ");
+            Serial.println(WiFi.localIP());
+        }
+        else
+        {
+            Serial.println("WiFi disconnected");
+        }
     }
 
-    lastConnectedState = connected;
-
-    if (connected)
+    if (!connected && millis() - lastConnectionAttemptMs >= config.reconnectIntervalMs)
     {
-        Serial.println("WiFi connected");
-        Serial.print("IP address: ");
-        Serial.println(WiFi.localIP());
-    }
-    else
-    {
-        Serial.println("WiFi disconnected");
+        startConnection();
     }
 }
 
 bool WifiConnection::isConnected() const
 {
     return WiFi.status() == WL_CONNECTED;
+}
+
+void WifiConnection::startConnection()
+{
+    lastConnectionAttemptMs = millis();
+
+    Serial.println("WiFi connecting...");
+
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid, password);
 }

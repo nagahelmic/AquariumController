@@ -26,7 +26,7 @@ void Application::update()
     const uint32_t now = millis();
 
     display.update();
-    wifi.update();
+    wifi.update(settings.wifi);
 
     if (temperatureMeasurementTimer.isReady(now, settings.temperature.measurementIntervalMs))
     {

@@ -2,7 +2,8 @@
 #include <cstdint>
 
 namespace Config {
-    struct Temperature {
+    struct Temperature 
+    {
         float minTemperature = 22.0f;
         float maxTemperature = 27.0f;
 
@@ -17,18 +18,29 @@ namespace Config {
         };
     };
 
-    struct Display {
+    struct Display 
+    {
         uint8_t brightness = 255;
         uint32_t refreshIntervalMs = 1000;
     };
 
-    struct Alarm {
+    struct Alarm 
+    {
         bool enabled = true;
     };
 
-    struct Settings {
+    struct Wifi
+    {
+        uint32_t reconnectIntervalMs = 10000;
+    };
+
+    struct Settings 
+    {
         Temperature temperature;
         Display display;
+        Wifi wifi;
         Alarm alarm;
     };
+
+    
 }
