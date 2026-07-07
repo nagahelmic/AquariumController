@@ -28,24 +28,19 @@ void Display::render(const DisplayData& data) {
     
     oled.clearDisplay();
 
+    drawTemperatureLine(0, 0, "T1", data.waterTemperature1);
+    drawTemperatureLine(0, 24, "T2", data.waterTemperature2);
+
     oled.setTextSize(1);
-
-    oled.setCursor(0, 0);
-    oled.println("AquariumController");
-
-    drawTemperatureLine(0, 16, "T1", data.waterTemperature1);
-    drawTemperatureLine(0, 28, "T2", data.waterTemperature2);
-    
-    oled.setCursor(0, 44);
-    oled.print("Wifi: ");
-    oled.println(data.wifiConected ? "OK" : "OFF");
-
     oled.setCursor(0, 56);
-    oled.print("Alarm: ");
-    oled.println(data.alarmActive ? "YES" : "NO");
+
+    oled.print("Wifi: ");
+    oled.print(data.wifiConected ? "OK" : "OFF");
+
+    oled.print("  Alarm: ");
+    oled.print(data.alarmActive ? "YES" : "NO");
 
     oled.display();
-
 }
 
 void Display::drawTemperatureLine(
@@ -55,7 +50,9 @@ void Display::drawTemperatureLine(
     const TemperatureReading& reading
 )
 {
+    oled.setTextSize(2);
     oled.setCursor(x, y);
+
     oled.print(label);
     oled.print(": ");
 
