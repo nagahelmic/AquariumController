@@ -33,33 +33,8 @@ void Display::render(const DisplayData& data) {
     oled.setCursor(0, 0);
     oled.println("AquariumController");
 
-    //Print Temperature 1 or ERROR
-    oled.setCursor(0, 16);
-    oled.print("T1: ");
-
-    if (data.waterTemperature1.valid)
-    {
-        oled.print(data.waterTemperature1.valueCelsius, 1);
-        oled.println(" C");
-    }
-    else
-    {   
-        oled.println("ERROR");
-    }
-
-    //Print Temperature 2 or ERROR
-    oled.setCursor(0, 28);
-    oled.print("T2: ");
-
-    if (data.waterTemperature2.valid)
-    {
-        oled.print(data.waterTemperature2.valueCelsius, 1);
-        oled.println(" C");
-    }
-    else
-    {   
-        oled.println("ERROR");
-    }
+    drawTemperatureLine(0, 16, "T1", data.waterTemperature1);
+    drawTemperatureLine(0, 28, "T2", data.waterTemperature2);
     
     oled.setCursor(0, 44);
     oled.print("Wifi: ");
@@ -71,4 +46,26 @@ void Display::render(const DisplayData& data) {
 
     oled.display();
 
+}
+
+void Display::drawTemperatureLine(
+    int16_t x,
+    int16_t y,
+    const char* label,
+    const TemperatureReading& reading
+)
+{
+    oled.setCursor(x, y);
+    oled.print(label);
+    oled.print(": ");
+
+    if (reading.valid)
+    {
+        oled.print(reading.valueCelsius, 1);
+        oled.println(" C");
+    }
+    else
+    {
+        oled.println("ERROR");
+    }
 }
