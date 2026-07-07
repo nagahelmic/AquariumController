@@ -21,6 +21,8 @@ void WifiConnection::update(const Config::Wifi& config)
 
     const bool connected = isConnected();
 
+    static bool testDisconnectDone = false;
+
     if (connected != lastConnectedState)
     {
         lastConnectedState = connected;

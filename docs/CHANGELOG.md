@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented here.
 
+## v0.6.0 - Wi-Fi
+
+### Added
+
+#### Wi-Fi
+- Added `WifiConnection` module.
+- Added Wi-Fi connection initialization.
+- Added non-blocking Wi-Fi update logic.
+- Added Wi-Fi connection state tracking.
+- Added non-blocking reconnect support.
+- Added Wi-Fi reconnect interval configuration.
+- Added IP address output to Serial Monitor.
+
+#### Secrets
+- Added `Secrets.example.h` template.
+- Added local `Secrets.h` support for Wi-Fi credentials.
+- Added Git ignore rule for `Secrets.h`.
+
+#### Display Integration
+- Added Wi-Fi connection state to `DisplayData`.
+- Added Wi-Fi status icon on OLED.
+- Added connected and disconnected icon states.
+
+### Changed
+
+#### Application
+- Integrated `WifiConnection` module.
+- Updated `updateDisplayData()` to use real Wi-Fi connection state.
+- Added `wifi.update(settings.wifi)` to the main update loop.
+
+### Tested
+- Successfully connected ESP32 to Wi-Fi.
+- Successfully printed IP address to Serial Monitor.
+- Successfully tested failed connection attempts with invalid credentials.
+- Successfully tested non-blocking reconnect behavior.
+- Successfully verified Wi-Fi status icon on OLED.
+
 ## v0.5.0 - Display Integration
 
 ### Changed

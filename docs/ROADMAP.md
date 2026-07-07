@@ -95,11 +95,21 @@ Status: **Completed**
 
 # v0.6.0 - Wi-Fi
 
-- [ ] Connect to Wi-Fi
-- [ ] Automatic reconnect
-- [ ] Display IP address
+## Wi-Fi Connection
+- [x] Add local `Secrets.h` for Wi-Fi credentials
+- [x] Add `Secrets.example.h` template
+- [x] Ignore `Secrets.h` in Git
+- [x] Create `WifiConnection` module
+- [x] Connect ESP32 to Wi-Fi
+- [x] Print Wi-Fi connection status to Serial Monitor
+- [x] Print ESP32 IP address
+- [x] Add Wi-Fi configuration
+- [x] Add non-blocking Wi-Fi update logic
+- [x] Add non-blocking reconnect logic
+- [x] Pass Wi-Fi connection state to `DisplayData`
+- [x] Show Wi-Fi connection state on OLED using icon
 
-Status: **Planned**
+Status: **Completed**
 
 ---
 

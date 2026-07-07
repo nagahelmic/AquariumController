@@ -15,7 +15,7 @@
 
 Current project version:
 
-**v0.5.0 – Display Integration**
+**v0.6.0 – Wi-Fi**
 
 Completed modules:
 
@@ -26,6 +26,8 @@ Completed modules:
 - ✅ Display
 - ✅ Timing
 - ✅ Temperature
+- ✅ Wi-Fi
+
 
 
 ---
