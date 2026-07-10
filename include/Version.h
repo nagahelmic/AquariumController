@@ -6,9 +6,9 @@ namespace Version
 {
     constexpr const char* Name = "AquariumController";
 
-    constexpr uint8_t Major = 0;
-    constexpr uint8_t Minor = 9;
+    constexpr uint8_t Major = 1;
+    constexpr uint8_t Minor = 0;
     constexpr uint8_t Patch = 0;
 
-    constexpr const char* String = "0.9.0";
+    constexpr const char* String = "1.0.0";
 }
