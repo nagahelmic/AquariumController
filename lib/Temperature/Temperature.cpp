@@ -4,6 +4,11 @@
 
 #include "Pins.h"
 
+namespace
+{
+    constexpr uint8_t SensorAddressLength = 8;
+}
+
 Temperature::Temperature()
     : oneWire(Pins::Temperature::OneWireBus),
       sensors(&oneWire)
@@ -85,7 +90,7 @@ void Temperature::printSensorAddresses()
 
 void Temperature::printAddress(const uint8_t* address)
 {
-    for (uint8_t index = 0; index < 8; index++)
+    for (uint8_t index = 0; index < SensorAddressLength; index++)
     {
         if (address[index] < 16)
         {
