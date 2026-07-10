@@ -48,19 +48,38 @@ void Display::update()
     // Display update logic will be added later.
 }
 
-void Display::render(const DisplayData& data) 
+void Display::render(const DisplayData& data)
 {
     oled.clearDisplay();
 
-    drawTemperatureLine(0, 0, "T1", data.waterTemperature1);
-    drawTemperatureLine(0, 24, "T2", data.waterTemperature2);
+    drawTemperatureLine(
+        0,
+        0,
+        "T1",
+        data.waterTemperature1,
+        data.waterTemperature1Alarm
+    );
+
+    drawTemperatureLine(
+        0,
+        24,
+        "T2",
+        data.waterTemperature2,
+        data.waterTemperature2Alarm
+    );
 
     drawWifiIcon(120, 56, data.wifiConnected);
 
     oled.display();
 }
 
-void Display::drawTemperatureLine(int16_t x, int16_t y, const char* label, const TemperatureReading& reading)
+void Display::drawTemperatureLine(
+    int16_t x,
+    int16_t y,
+    const char* label,
+    const TemperatureReading& reading,
+    bool alarmActive
+)
 {
     oled.setTextSize(2);
     oled.setCursor(x, y);
@@ -76,6 +95,13 @@ void Display::drawTemperatureLine(int16_t x, int16_t y, const char* label, const
     else
     {
         oled.println("ERROR");
+    }
+
+    if (alarmActive)
+    {
+        oled.setTextSize(1);
+        oled.setCursor(122, y + 6);
+        oled.print("!");
     }
 }
 

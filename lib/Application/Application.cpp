@@ -49,15 +49,24 @@ void Application::update()
 }
 
  void Application::updateDisplayData()
- {
-    //Temperature Senzor 1
+{
+    const AlarmState alarmState = alarm.getState();
+
     displayData.waterTemperature1 = temperature.getWaterTemperature1();
-    //Temperature Senzor 2
     displayData.waterTemperature2 = temperature.getWaterTemperature2();
 
     displayData.wifiConnected = wifi.isConnected();
-    displayData.alarmActive = alarm.getState().active;
- }
+
+    displayData.waterTemperature1Alarm =
+        alarmState.waterTemperature1Low ||
+        alarmState.waterTemperature1High ||
+        alarmState.waterTemperature1Invalid;
+
+    displayData.waterTemperature2Alarm =
+        alarmState.waterTemperature2Low ||
+        alarmState.waterTemperature2High ||
+        alarmState.waterTemperature2Invalid;
+}
 
  void Application::updateWebData()
 {

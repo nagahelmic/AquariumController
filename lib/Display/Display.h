@@ -17,7 +17,8 @@ class Display
             int16_t x,
             int16_t y,
             const char* label,
-            const TemperatureReading& reading
+            const TemperatureReading& reading,
+            bool alarmActive
         );
 
         void drawWifiIcon(int16_t x, int16_t y, bool connected);
