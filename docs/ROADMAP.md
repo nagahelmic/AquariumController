@@ -115,11 +115,24 @@ Status: **Completed**
 
 # v0.7.0 - Web Interface
 
-- [ ] HTTP server
-- [ ] Dashboard
-- [ ] JSON API
+## Web Dashboard
+- [x] Add ESPAsyncWebServer support
+- [x] Add AsyncTCP dependency
+- [x] Add LittleFS filesystem support
+- [x] Store frontend files in `data/`
+- [x] Add `index.html`
+- [x] Add `style.css`
+- [x] Add `app.js`
+- [x] Create `WebInterface` module
+- [x] Create `WebData` structure
+- [x] Serve local dashboard from ESP32
+- [x] Add `/api/status` JSON endpoint
+- [x] Show temperature values on web dashboard
+- [x] Show sensor error state on web dashboard
+- [x] Show Wi-Fi connection state on web dashboard
+- [x] Show uptime on web dashboard
 
-Status: **Planned**
+Status: **Completed**
 
 ---
 

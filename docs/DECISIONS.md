@@ -420,3 +420,28 @@ This allows the firmware to reliably distinguish between individual sensors, suc
 
 - aquarium water temperature sensor,
 - secondary water temperature sensor.
+
+# ADR-017: Use local read-only Web Interface
+
+## Decision
+
+The Web Interface will be implemented as a local read-only dashboard.
+
+The `WebInterface` module is responsible for:
+
+- serving static frontend files from LittleFS,
+- providing a local web dashboard,
+- exposing a JSON status API,
+- rendering only data provided by `Application`.
+
+The Web Interface receives data through a dedicated `WebData` structure.
+
+## Reason
+
+The Web Interface should not directly access hardware modules such as `Temperature` or `WifiConnection`.
+
+`Application` remains responsible for collecting system state and preparing output data.
+
+The first web version is read-only to keep the firmware safer and simpler.
+
+The Web Interface is intended for local network use only and should not be exposed directly to the public internet.

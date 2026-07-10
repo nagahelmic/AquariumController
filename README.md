@@ -15,7 +15,7 @@
 
 Current project version:
 
-**v0.6.0 – Wi-Fi**
+**v0.7.0 – Web Interface**
 
 Completed modules:
 
@@ -27,7 +27,11 @@ Completed modules:
 - ✅ Timing
 - ✅ Temperature
 - ✅ Wi-Fi
+- ✅ Web Interface
 
+Next milestone:
+
+**v0.8.0 – OTA Updates**
 
 
 ---

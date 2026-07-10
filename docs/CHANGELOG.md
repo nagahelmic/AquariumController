@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented here.
 
+## v0.7.0 - Web Interface
+
+### Added
+
+#### Web Interface
+- Added `WebInterface` module.
+- Added ESPAsyncWebServer support.
+- Added AsyncTCP dependency.
+- Added LittleFS filesystem support.
+- Added static frontend files in `data/`.
+- Added local read-only dashboard.
+- Added `/api/status` JSON endpoint.
+- Added `WebData` structure for web output data.
+
+#### Frontend
+- Added `index.html`.
+- Added `style.css`.
+- Added `app.js`.
+- Added automatic status refresh using JavaScript `fetch()`.
+
+#### API
+- Added JSON output for water temperature readings.
+- Added JSON output for sensor validity state.
+- Added JSON output for Wi-Fi connection state.
+- Added JSON output for uptime.
+
+### Changed
+
+#### Application
+- Integrated `WebInterface` module.
+- Added `updateWebData()` helper method.
+- Added `WebData` update flow from `Application`.
+
+### Documentation
+- Added ADR-017 for local read-only Web Interface.
+
+### Tested
+- Successfully built firmware with ESPAsyncWebServer.
+- Successfully uploaded firmware to ESP32.
+- Successfully uploaded LittleFS filesystem image.
+- Successfully loaded web dashboard from ESP32.
+- Successfully tested `/api/status` JSON endpoint.
+- Successfully verified valid temperature display on web dashboard.
+- Successfully verified sensor error display on web dashboard.
+
 ## v0.6.0 - Wi-Fi
 
 ### Added
