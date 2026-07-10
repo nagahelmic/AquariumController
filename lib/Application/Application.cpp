@@ -1,8 +1,9 @@
 #include "Application.h"
+
 #include <Arduino.h>
-#include "Version.h"
-#include "Pins.h"
+
 #include "Secrets.h"
+#include "Version.h"
 
 void Application::begin()
 {
@@ -20,7 +21,6 @@ void Application::begin()
     wifi.begin(Secrets::WifiSsid, Secrets::WifiPassword);
     webInterface.begin();
     ota.begin(settings.ota.hostname, Secrets::OtaPassword);
-    
 }
 
 void Application::update()
@@ -35,7 +35,11 @@ void Application::update()
     {
         temperature.update(settings.temperature);
 
-        alarm.update(settings.alarm, temperature.getWaterTemperature1(), temperature.getWaterTemperature2());
+        alarm.update(
+            settings.alarm,
+            temperature.getWaterTemperature1(),
+            temperature.getWaterTemperature2()
+        );
     }
 
     updateWebData();
@@ -48,7 +52,7 @@ void Application::update()
     }
 }
 
- void Application::updateDisplayData()
+void Application::updateDisplayData()
 {
     const AlarmState alarmState = alarm.getState();
 
@@ -68,7 +72,7 @@ void Application::update()
         alarmState.waterTemperature2Invalid;
 }
 
- void Application::updateWebData()
+void Application::updateWebData()
 {
     webData.waterTemperature1 = temperature.getWaterTemperature1();
     webData.waterTemperature2 = temperature.getWaterTemperature2();
@@ -76,5 +80,5 @@ void Application::update()
     webData.wifiConnected = wifi.isConnected();
     webData.uptimeSeconds = millis() / 1000;
 
-     webData.alarmState = alarm.getState();
+    webData.alarmState = alarm.getState();
 }
