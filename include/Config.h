@@ -1,13 +1,15 @@
-#pragma once 
+#pragma once
+
 #include <cstdint>
 
-namespace Config {
+namespace Config
+{
     struct Ota
     {
         const char* hostname = "aquarium-controller";
     };
 
-    struct Temperature 
+    struct Temperature
     {
         uint32_t measurementIntervalMs = 1000;
 
@@ -20,13 +22,13 @@ namespace Config {
         };
     };
 
-    struct Display 
+    struct Display
     {
         uint8_t brightness = 255;
         uint32_t refreshIntervalMs = 1000;
     };
 
-    struct Alarm 
+    struct Alarm
     {
         bool enabled = true;
 
@@ -39,7 +41,7 @@ namespace Config {
         uint32_t reconnectIntervalMs = 10000;
     };
 
-    struct Settings 
+    struct Settings
     {
         Temperature temperature;
         Display display;
@@ -47,6 +49,4 @@ namespace Config {
         Ota ota;
         Alarm alarm;
     };
-
-    
 }

@@ -1,8 +1,9 @@
 #pragma once
+
 #include <cstdint>
 
-
-namespace Version {
+namespace Version
+{
     constexpr const char* Name = "AquariumController";
 
     constexpr uint8_t Major = 0;
