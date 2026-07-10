@@ -9,6 +9,7 @@
 #include "WebData.h"
 #include "WebInterface.h"
 #include "OtaUpdater.h"
+#include "Alarm.h"
 
 class Application
 {
@@ -32,4 +33,5 @@ private:
     WifiConnection wifi;
     WebInterface webInterface;
     OtaUpdater ota;
+    Alarm alarm;
 };

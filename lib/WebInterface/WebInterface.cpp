@@ -66,6 +66,38 @@ String WebInterface::buildStatusJson() const
 
     json += "\"uptimeSeconds\":";
     json += String(webData.uptimeSeconds);
+    json += ",";
+
+    json += "\"alarm\":{";
+
+    json += "\"active\":";
+    json += webData.alarmState.active ? "true" : "false";
+    json += ",";
+
+    json += "\"waterTemperature1Low\":";
+    json += webData.alarmState.waterTemperature1Low ? "true" : "false";
+    json += ",";
+
+    json += "\"waterTemperature1High\":";
+    json += webData.alarmState.waterTemperature1High ? "true" : "false";
+    json += ",";
+
+    json += "\"waterTemperature1Invalid\":";
+    json += webData.alarmState.waterTemperature1Invalid ? "true" : "false";
+    json += ",";
+
+    json += "\"waterTemperature2Low\":";
+    json += webData.alarmState.waterTemperature2Low ? "true" : "false";
+    json += ",";
+
+    json += "\"waterTemperature2High\":";
+    json += webData.alarmState.waterTemperature2High ? "true" : "false";
+    json += ",";
+
+    json += "\"waterTemperature2Invalid\":";
+    json += webData.alarmState.waterTemperature2Invalid ? "true" : "false";
+
+    json += "}";
 
     json += "}";
 

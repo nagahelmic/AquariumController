@@ -445,3 +445,34 @@ The Web Interface should not directly access hardware modules such as `Temperatu
 The first web version is read-only to keep the firmware safer and simpler.
 
 The Web Interface is intended for local network use only and should not be exposed directly to the public internet.
+
+# ADR-018: Keep Alarm module focused on evaluation only
+
+## Decision
+
+The `Alarm` module will be responsible only for evaluating alarm state.
+
+It will:
+
+- receive temperature readings,
+- compare valid temperature readings against configured thresholds,
+- produce alarm state information.
+
+It will not:
+
+- read sensors directly,
+- render anything on OLED,
+- serve web data,
+- control Wi-Fi.
+
+## Reason
+
+Temperature measurement, alarm evaluation and output rendering are separate responsibilities.
+
+The `Temperature` module measures values.
+
+The `Alarm` module evaluates whether the values are safe.
+
+`Application` coordinates data flow and passes alarm state to output modules such as `Display` and `WebInterface`.
+
+This keeps the firmware modular and easier to extend.

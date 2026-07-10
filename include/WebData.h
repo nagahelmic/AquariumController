@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+#include "AlarmState.h"
 #include "TemperatureReading.h"
 
 struct WebData
@@ -11,4 +12,6 @@ struct WebData
 
     bool wifiConnected = false;
     uint32_t uptimeSeconds = 0;
+
+    AlarmState alarmState;
 };

@@ -34,6 +34,8 @@ void Application::update()
     if (temperatureMeasurementTimer.isReady(now, settings.temperature.measurementIntervalMs))
     {
         temperature.update(settings.temperature);
+
+        alarm.update(settings.alarm, temperature.getWaterTemperature1(), temperature.getWaterTemperature2());
     }
 
     updateWebData();
@@ -54,7 +56,7 @@ void Application::update()
     displayData.waterTemperature2 = temperature.getWaterTemperature2();
 
     displayData.wifiConnected = wifi.isConnected();
-    displayData.alarmActive = false;
+    displayData.alarmActive = alarm.getState().active;
  }
 
  void Application::updateWebData()
@@ -64,4 +66,6 @@ void Application::update()
 
     webData.wifiConnected = wifi.isConnected();
     webData.uptimeSeconds = millis() / 1000;
+
+     webData.alarmState = alarm.getState();
 }

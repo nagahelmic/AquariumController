@@ -9,9 +9,6 @@ namespace Config {
 
     struct Temperature 
     {
-        float minTemperature = 22.0f;
-        float maxTemperature = 27.0f;
-
         uint32_t measurementIntervalMs = 1000;
 
         uint8_t waterSensor1Address[8] = {
@@ -32,6 +29,9 @@ namespace Config {
     struct Alarm 
     {
         bool enabled = true;
+
+        float minTemperature = 22.0f;
+        float maxTemperature = 27.0f;
     };
 
     struct Wifi
