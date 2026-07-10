@@ -19,9 +19,8 @@ void WifiConnection::update(const Config::Wifi& config)
         return;
     }
 
+    const uint32_t now = millis();
     const bool connected = isConnected();
-
-    static bool testDisconnectDone = false;
 
     if (connected != lastConnectedState)
     {
@@ -39,7 +38,7 @@ void WifiConnection::update(const Config::Wifi& config)
         }
     }
 
-    if (!connected && millis() - lastConnectionAttemptMs >= config.reconnectIntervalMs)
+    if (!connected && now - lastConnectionAttemptMs >= config.reconnectIntervalMs)
     {
         startConnection();
     }
