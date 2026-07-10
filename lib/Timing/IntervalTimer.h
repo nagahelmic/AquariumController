@@ -1,14 +1,14 @@
 #pragma once
 
-# include <cstdint>
+#include <cstdint>
 
 class IntervalTimer
 {
-    public:
-        bool isReady(uint32_t now, uint32_t intervalMs);
-        void reset();
+public:
+    bool isReady(uint32_t now, uint32_t intervalMs);
+    void reset();
 
-    private:
-        uint32_t lastRunMs = 0;
-        bool firstRun = true;
+private:
+    uint32_t lastRunMs = 0;
+    bool firstRun = true;
 };
