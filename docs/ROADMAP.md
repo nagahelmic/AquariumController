@@ -155,11 +155,26 @@ Status: **Completed**
 
 # v0.9.0 - Alarm System
 
-- [ ] Temperature limits
-- [ ] Notifications
-- [ ] Alarm handling
+## Alarm Evaluation
+- [x] Move temperature alarm thresholds to `Config::Alarm`
+- [x] Create `AlarmState`
+- [x] Create `Alarm` module
+- [x] Evaluate low temperature state
+- [x] Evaluate high temperature state
+- [x] Evaluate invalid sensor state
+- [x] Expose detailed alarm state through `/api/status`
 
-Status: **Planned**
+## Display Integration
+- [x] Add per-temperature alarm indicators to `DisplayData`
+- [x] Show alarm indicator on OLED temperature lines
+
+## Web Integration
+- [x] Add alarm state to web dashboard
+- [x] Show alarm banner when alarm is active
+- [x] Show sensor error state on web dashboard
+- [x] Show low/high temperature alarm text on web dashboard
+
+Status: **Completed**
 
 ---
 

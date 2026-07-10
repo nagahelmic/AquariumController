@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented here.
 
+## v0.9.0 - Alarm System
+
+### Added
+
+#### Alarm
+- Added `Alarm` module.
+- Added `AlarmState` structure.
+- Added low temperature alarm evaluation.
+- Added high temperature alarm evaluation.
+- Added invalid sensor alarm evaluation.
+- Added alarm state output to `/api/status`.
+
+#### Display Integration
+- Added per-temperature alarm flags to `DisplayData`.
+- Added alarm indicator on OLED temperature lines.
+
+#### Web Integration
+- Added alarm banner to web dashboard.
+- Added alarm status rendering in `app.js`.
+- Added alarm styling in `style.css`.
+- Added display of sensor error, temperature too low and temperature too high states.
+
+### Changed
+
+#### Configuration
+- Moved temperature alarm thresholds from `Config::Temperature` to `Config::Alarm`.
+
+#### Application
+- Integrated `Alarm` module.
+- Updated `DisplayData` preparation with per-temperature alarm state.
+- Updated `WebData` preparation with detailed alarm state.
+
+### Tested
+- Successfully tested normal temperature state.
+- Successfully tested disconnected sensor alarm state.
+- Successfully tested high temperature alarm state.
+- Successfully tested OLED alarm indicator.
+- Successfully tested web dashboard alarm banner.
+- Successfully tested alarm details in `/api/status`.
+
 ## v0.8.0 - OTA Updates
 
 ### Added

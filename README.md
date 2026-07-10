@@ -15,7 +15,7 @@
 
 Current project version:
 
-**v0.8.0 – OTA Updates**
+**v0.9.0 – Alarm System**
 
 Completed modules:
 
@@ -29,10 +29,11 @@ Completed modules:
 - ✅ Wi-Fi
 - ✅ Web Interface
 - ✅ OTA Updates
+- ✅ Alarm System
 
 Next milestone:
 
-**v0.9.0 – Alarm System**
+**v1.0.0 – First Stable Release**
 
 
 ---
