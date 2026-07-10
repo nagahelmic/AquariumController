@@ -15,7 +15,7 @@
 
 Current project version:
 
-**v0.7.0 – Web Interface**
+**v0.8.0 – OTA Updates**
 
 Completed modules:
 
@@ -28,30 +28,28 @@ Completed modules:
 - ✅ Temperature
 - ✅ Wi-Fi
 - ✅ Web Interface
+- ✅ OTA Updates
 
 Next milestone:
 
-**v0.8.0 – OTA Updates**
+**v0.9.0 – Alarm System**
 
 
 ---
+## OTA Upload
 
-# 🎯 Project Vision
+OTA upload is available through the `esp32dev_ota` PlatformIO environment.
 
-AquariumController is an open-source project focused on creating a **professional, modular and expandable aquarium controller** based on ESP32.
+The current OTA upload target uses the ESP32 IP address:
 
-The goal is not only to build an aquarium thermometer, but a complete control system that can grow over time.
+```ini
+upload_port = your_assigned_ip_addres
+```
+If the router assigns a different IP address, upload_port must be updated.
 
-The project is designed to be:
-
-- ✅ Modular
-- ✅ Well documented
-- ✅ Easy to maintain
-- ✅ Easy to extend
-- ✅ Open source
+For stable OTA uploads, it is recommended to configure DHCP reservation for the ESP32 in the router.
 
 ---
-
 # ✨ Planned Features
 
 ## Core
@@ -168,44 +166,6 @@ This project follows several simple rules:
 
 ---
 
-# 🗺 Current Roadmap
-
-## Phase 0 – Development Environment
-
-- ✅ VS Code
-- ✅ PlatformIO
-- ✅ Git
-- ✅ GitHub
-- ✅ Build successful
-
----
-
-## Phase 1 – Project Foundation
-
-- 🚧 Documentation
-- ⬜ Basic architecture
-- ⬜ Core configuration
-
----
-
-## Next Milestone
-
-🎯 **Create the project foundation**
-
-- Config
-- Version
-- Pins
-- Project architecture
-
----
-
-# 🚀 Long-Term Vision
-
-AquariumController should eventually become a complete aquarium automation platform supporting multiple sensors, automation, web management and smart-home integration.
-
-The architecture is designed to allow adding new modules without changing existing code.
-
----
 
 # 📄 License
 

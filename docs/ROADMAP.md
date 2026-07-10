@@ -136,13 +136,20 @@ Status: **Completed**
 
 ---
 
-# v0.8.0 - Configuration
+# v0.8.0 - OTA Updates
 
-- [ ] Store settings
-- [ ] Load settings
-- [ ] Web configuration
+## Over-The-Air Updates
+- [x] Add OTA password to local `Secrets.h`
+- [x] Add OTA password template to `Secrets.example.h`
+- [x] Create `OtaUpdater` module
+- [x] Initialize ArduinoOTA after Wi-Fi connection
+- [x] Handle OTA updates in main update loop
+- [x] Add PlatformIO OTA environment
+- [x] Configure OTA upload over Wi-Fi
+- [x] Test OTA firmware upload using IP address
+- [x] Keep USB upload environment available as fallback
 
-Status: **Planned**
+Status: **Completed**
 
 ---
 
@@ -168,7 +175,6 @@ Status: **Future**
 
 # 🔮 Future
 
-- [ ] OTA Updates
 - [ ] MQTT
 - [ ] Home Assistant
 - [ ] Temperature history

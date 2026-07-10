@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented here.
 
+## v0.8.0 - OTA Updates
+
+### Added
+
+#### OTA
+- Added `OtaUpdater` module.
+- Added ArduinoOTA integration.
+- Added OTA hostname configuration.
+- Added OTA password support through local `Secrets.h`.
+- Added OTA password placeholder to `Secrets.example.h`.
+- Added PlatformIO OTA environment.
+- Added Wi-Fi firmware upload support using `espota`.
+
+#### PlatformIO
+- Added `esp32dev_ota` environment.
+- Kept original `esp32dev` USB upload environment as fallback.
+
+### Changed
+
+#### Application
+- Integrated `OtaUpdater` module.
+- Added OTA update handling to the main update loop.
+
+### Tested
+- Successfully built firmware with OTA support.
+- Successfully uploaded initial OTA-capable firmware over USB.
+- Successfully started OTA updater after Wi-Fi connection.
+- Successfully uploaded firmware over Wi-Fi using PlatformIO OTA.
+- Verified OTA upload using ESP32 IP address.
+
 ## v0.7.0 - Web Interface
 
 ### Added
