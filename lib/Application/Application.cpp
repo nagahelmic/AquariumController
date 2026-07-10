@@ -19,6 +19,7 @@ void Application::begin()
     temperature.begin();
     wifi.begin(Secrets::WifiSsid, Secrets::WifiPassword);
     webInterface.begin();
+    ota.begin(settings.ota.hostname, Secrets::OtaPassword);
     
 }
 
@@ -28,6 +29,7 @@ void Application::update()
 
     display.update();
     wifi.update(settings.wifi);
+    ota.update(wifi.isConnected());
 
     if (temperatureMeasurementTimer.isReady(now, settings.temperature.measurementIntervalMs))
     {

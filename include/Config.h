@@ -2,6 +2,11 @@
 #include <cstdint>
 
 namespace Config {
+    struct Ota
+    {
+        const char* hostname = "aquarium-controller";
+    };
+
     struct Temperature 
     {
         float minTemperature = 22.0f;
@@ -39,6 +44,7 @@ namespace Config {
         Temperature temperature;
         Display display;
         Wifi wifi;
+        Ota ota;
         Alarm alarm;
     };
 

@@ -8,6 +8,7 @@
 #include "WifiConnection.h"
 #include "WebData.h"
 #include "WebInterface.h"
+#include "OtaUpdater.h"
 
 class Application
 {
@@ -30,4 +31,5 @@ private:
     Temperature temperature;
     WifiConnection wifi;
     WebInterface webInterface;
+    OtaUpdater ota;
 };
