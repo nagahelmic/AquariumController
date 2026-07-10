@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquariumController</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>AquariumController</h1>
+
+        <section class="card">
+            <div class="label">Water temperature 1</div>
+            <div id="temperature1" class="value">--.- °C</div>
+            <div id="temperature1Status" class="status">Loading...</div>
+        </section>
+
+        <section class="card">
+            <div class="label">Water temperature 2</div>
+            <div id="temperature2" class="value">--.- °C</div>
+            <div id="temperature2Status" class="status">Loading...</div>
+        </section>
+
+        <section class="card">
+            <div class="label">System</div>
+            <div id="wifiStatus" class="status">WiFi: loading...</div>
+            <div id="uptime" class="status">Uptime: -- s</div>
+        </section>
+    </main>
+
+    <script src="/app.js"></script>
+</body>
+</html>

@@ -18,6 +18,7 @@ void Application::begin()
     display.begin();
     temperature.begin();
     wifi.begin(Secrets::WifiSsid, Secrets::WifiPassword);
+    webInterface.begin();
     
 }
 
@@ -32,6 +33,9 @@ void Application::update()
     {
         temperature.update(settings.temperature);
     }
+
+    updateWebData();
+    webInterface.update(webData);
 
     if (displayRefreshTimer.isReady(now, settings.display.refreshIntervalMs))
     {
@@ -50,3 +54,12 @@ void Application::update()
     displayData.wifiConnected = wifi.isConnected();
     displayData.alarmActive = false;
  }
+
+ void Application::updateWebData()
+{
+    webData.waterTemperature1 = temperature.getWaterTemperature1();
+    webData.waterTemperature2 = temperature.getWaterTemperature2();
+
+    webData.wifiConnected = wifi.isConnected();
+    webData.uptimeSeconds = millis() / 1000;
+}

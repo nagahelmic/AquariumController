@@ -6,6 +6,8 @@
 #include "IntervalTimer.h"
 #include "Temperature.h"
 #include "WifiConnection.h"
+#include "WebData.h"
+#include "WebInterface.h"
 
 class Application
 {
@@ -14,15 +16,18 @@ public:
     void update();
 
 private:
+    void updateWebData();
     void updateDisplayData();
 
     Config::Settings settings;
     Display display;
     DisplayData displayData;
+    WebData webData;
 
     IntervalTimer displayRefreshTimer;
     IntervalTimer temperatureMeasurementTimer;
 
     Temperature temperature;
     WifiConnection wifi;
+    WebInterface webInterface;
 };
