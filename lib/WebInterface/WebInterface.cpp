@@ -48,20 +48,20 @@ String WebInterface::buildStatusJson() const
 
     json += "\"waterTemperature1\":{";
     json += "\"valueCelsius\":";
-    json += webData.waterTemperature1.valid ? String(webData.waterTemperature1.valueCelsius, 1) : "null";
+    json += (webData.waterTemperature1.valid ? String(webData.waterTemperature1.valueCelsius, 1) : "null");
     json += ",\"valid\":";
-    json += webData.waterTemperature1.valid ? "true" : "false";
+    json += (webData.waterTemperature1.valid ? "true" : "false");
     json += "},";
 
     json += "\"waterTemperature2\":{";
     json += "\"valueCelsius\":";
-    json += webData.waterTemperature2.valid ? String(webData.waterTemperature2.valueCelsius, 1) : "null";
+    json += (webData.waterTemperature2.valid ? String(webData.waterTemperature2.valueCelsius, 1) : "null");
     json += ",\"valid\":";
-    json += webData.waterTemperature2.valid ? "true" : "false";
+    json += (webData.waterTemperature2.valid ? "true" : "false");
     json += "},";
 
     json += "\"wifiConnected\":";
-    json += webData.wifiConnected ? "true" : "false";
+    json += (webData.wifiConnected ? "true" : "false");
     json += ",";
 
     json += "\"uptimeSeconds\":";
@@ -71,7 +71,7 @@ String WebInterface::buildStatusJson() const
     json += "\"alarm\":{";
 
     json += "\"active\":";
-    json += webData.alarmState.active ? "true" : "false";
+    json += (webData.alarmState.active ? "true" : "false");
     json += ",";
 
     json += "\"waterTemperature1Low\":";
