@@ -39,7 +39,6 @@ Status: **Completed**
 ## Architecture
 
 - [x] Create Application module
-- [x] Create CODING_STANDARTS.md
 - [x] Prepare project skeleton
 
 Status: **Completed**

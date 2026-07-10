@@ -3,6 +3,8 @@ async function loadStatus() {
         const response = await fetch('/api/status');
         const data = await response.json();
 
+        updateAlarmBanner(data.alarm);
+
         updateTemperature(
             'temperature1',
             'temperature1Status',

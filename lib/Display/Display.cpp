@@ -45,7 +45,8 @@ void Display::begin()
 {
     Wire.begin(Pins::Display::Sda, Pins::Display::Scl);
 
-    if (!oled.begin(0x3C, true)) {
+    if (!oled.begin(OledAddress, true))
+    {
         Serial.println("OLED initialization failed");
         initialized = false;
         return;
@@ -133,8 +134,8 @@ void Display::drawWifiIcon(int16_t x, int16_t y, bool connected)
         x,
         y,
         connected ? wifiIconConnected : wifiIconDisconnected,
-        8,
-        8,
+        IconWidth,
+        IconHeight,
         SH110X_WHITE
     );
 }

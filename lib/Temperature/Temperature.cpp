@@ -99,7 +99,7 @@ void Temperature::printAddress(const uint8_t* address)
 
         Serial.print(address[index], HEX);
 
-        if (index < 7)
+        if (index < SensorAddressLength - 1)
         {
             Serial.print(" ");
         }
