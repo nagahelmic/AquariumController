@@ -40,3 +40,22 @@ h1 {
     margin-top: 8px;
     color: #ccc;
 }
+
+.alarm-banner {
+    background: #3a1f1f;
+    border: 1px solid #b84a4a;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.status.alarm {
+    color: #ffb3b3;
+    font-weight: bold;
+}
