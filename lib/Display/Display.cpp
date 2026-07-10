@@ -3,6 +3,20 @@
 #include <Wire.h>
 #include "Pins.h"
 
+namespace
+{
+    constexpr uint8_t OledAddress = 0x3C;
+
+    constexpr int16_t WifiIconX = 120;
+    constexpr int16_t WifiIconY = 56;
+
+    constexpr int16_t AlarmIconX = 122;
+    constexpr int16_t AlarmIconYOffset = 6;
+
+    constexpr int16_t IconWidth = 8;
+    constexpr int16_t IconHeight = 8;
+}
+
 static const uint8_t wifiIconConnected[] PROGMEM =
 {
     0b00000000,
@@ -33,8 +47,11 @@ void Display::begin()
 
     if (!oled.begin(0x3C, true)) {
         Serial.println("OLED initialization failed");
+        initialized = false;
         return;
     }
+
+    initialized = true;
 
     oled.clearDisplay();
     oled.setTextColor(SH110X_WHITE);
@@ -50,6 +67,11 @@ void Display::update()
 
 void Display::render(const DisplayData& data)
 {
+    if (!initialized)
+    {
+        return;
+    }
+
     oled.clearDisplay();
 
     drawTemperatureLine(
@@ -68,7 +90,7 @@ void Display::render(const DisplayData& data)
         data.waterTemperature2Alarm
     );
 
-    drawWifiIcon(120, 56, data.wifiConnected);
+    drawWifiIcon(WifiIconX, WifiIconY, data.wifiConnected);
 
     oled.display();
 }
@@ -100,7 +122,7 @@ void Display::drawTemperatureLine(
     if (alarmActive)
     {
         oled.setTextSize(1);
-        oled.setCursor(122, y + 6);
+        oled.setCursor(AlarmIconX, y + AlarmIconYOffset);
         oled.print("!");
     }
 }
