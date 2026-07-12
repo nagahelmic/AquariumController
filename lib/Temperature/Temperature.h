@@ -14,7 +14,8 @@ public:
     Temperature();
 
     void begin();
-    void update(const Config::Temperature& config);
+    void requestMeasurement(uint32_t now);
+    bool update(uint32_t now, const Config::Temperature& config);
 
     TemperatureReading getWaterTemperature1() const;
     TemperatureReading getWaterTemperature2() const;
@@ -30,4 +31,8 @@ private:
 
     TemperatureReading waterTemperature1;
     TemperatureReading waterTemperature2;
+
+    uint32_t conversionStartedMs = 0;
+    uint16_t conversionWaitMs = 0;
+    bool conversionInProgress = false;
 };

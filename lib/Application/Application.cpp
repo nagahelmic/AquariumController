@@ -33,8 +33,11 @@ void Application::update()
 
     if (temperatureMeasurementTimer.isReady(now, settings.temperature.measurementIntervalMs))
     {
-        temperature.update(settings.temperature);
+        temperature.requestMeasurement(now);
+    }
 
+    if (temperature.update(now, settings.temperature))
+    {
         alarm.update(
             settings.alarm,
             temperature.getWaterTemperature1(),

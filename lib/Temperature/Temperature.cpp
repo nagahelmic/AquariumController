@@ -18,6 +18,8 @@ Temperature::Temperature()
 void Temperature::begin()
 {
     sensors.begin();
+    sensors.setWaitForConversion(false);
+    conversionWaitMs = sensors.millisToWaitForConversion();
 
     Serial.println("Temperature module initialized");
     Serial.print("DS18B20 sensors found: ");
@@ -26,12 +28,35 @@ void Temperature::begin()
     printSensorAddresses();
 }
 
-void Temperature::update(const Config::Temperature& config)
+void Temperature::requestMeasurement(uint32_t now)
 {
+    if (conversionInProgress)
+    {
+        return;
+    }
+
     sensors.requestTemperatures();
+    conversionStartedMs = now;
+    conversionInProgress = true;
+}
+
+bool Temperature::update(
+    uint32_t now,
+    const Config::Temperature& config
+)
+{
+    if (!conversionInProgress ||
+        now - conversionStartedMs < conversionWaitMs)
+    {
+        return false;
+    }
 
     waterTemperature1 = readSensor(config.waterSensor1Address);
     waterTemperature2 = readSensor(config.waterSensor2Address);
+
+    conversionInProgress = false;
+
+    return true;
 }
 
 TemperatureReading Temperature::getWaterTemperature1() const
