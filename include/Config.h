@@ -41,11 +41,19 @@ namespace Config
         uint32_t reconnectIntervalMs = 10000;
     };
 
+    struct Mqtt
+    {
+        const char* brokerUri = "mqtt://192.168.0.140:1883";
+        const char* clientId = "aquarium-controller";
+        uint32_t publishIntervalMs = 60000;
+    };
+
     struct Settings
     {
         Temperature temperature;
         Display display;
         Wifi wifi;
+        Mqtt mqtt;
         Ota ota;
         Alarm alarm;
     };

@@ -4,6 +4,7 @@
 #include "Display.h"
 #include "DisplayData.h"
 #include "IntervalTimer.h"
+#include "MqttConnection.h"
 #include "Temperature.h"
 #include "WifiConnection.h"
 #include "WebData.h"
@@ -27,10 +28,12 @@ private:
     WebData webData;
 
     IntervalTimer displayRefreshTimer;
+    IntervalTimer mqttPublishTimer;
     IntervalTimer temperatureMeasurementTimer;
 
     Temperature temperature;
     WifiConnection wifi;
+    MqttConnection mqtt;
     WebInterface webInterface;
     OtaUpdater ota;
     Alarm alarm;

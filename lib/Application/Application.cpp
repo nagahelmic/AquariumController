@@ -18,6 +18,11 @@ void Application::begin()
 
     display.begin();
     temperature.begin();
+    mqtt.begin(
+        settings.mqtt,
+        Secrets::MqttUsername,
+        Secrets::MqttPassword
+    );
     wifi.begin(Secrets::WifiSsid, Secrets::WifiPassword);
     webInterface.begin();
     ota.begin(settings.ota.hostname, Secrets::OtaPassword);
@@ -29,6 +34,7 @@ void Application::update()
 
     display.update();
     wifi.update(settings.wifi);
+    mqtt.update(wifi.isConnected());
     ota.update(wifi.isConnected());
 
     if (temperatureMeasurementTimer.isReady(now, settings.temperature.measurementIntervalMs))
@@ -47,6 +53,15 @@ void Application::update()
 
     updateWebData();
     webInterface.update(webData);
+
+    if (mqttPublishTimer.isReady(now, settings.mqtt.publishIntervalMs))
+    {
+        mqtt.publish(
+            temperature.getWaterTemperature(),
+            temperature.getRoomTemperature(),
+            alarm.getState()
+        );
+    }
 
     if (displayRefreshTimer.isReady(now, settings.display.refreshIntervalMs))
     {
