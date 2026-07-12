@@ -9,6 +9,84 @@ namespace
     constexpr const char* RoomTemperatureTopic = "aquarium/temperature/room";
     constexpr const char* AlarmTopic = "aquarium/status/alarm";
 
+    constexpr const char* WaterTemperatureDiscoveryTopic =
+        "homeassistant/sensor/aquarium_controller_water_temperature/config";
+    constexpr const char* RoomTemperatureDiscoveryTopic =
+        "homeassistant/sensor/aquarium_controller_room_temperature/config";
+    constexpr const char* AlarmDiscoveryTopic =
+        "homeassistant/binary_sensor/aquarium_controller_alarm/config";
+
+    constexpr const char* WaterTemperatureDiscoveryPayload = R"json({
+        "name":"Water temperature",
+        "unique_id":"aquarium_controller_water_temperature",
+        "default_entity_id":"sensor.aquarium_water_temperature",
+        "state_topic":"aquarium/temperature/water",
+        "availability_topic":"aquarium/status/availability",
+        "payload_available":"online",
+        "payload_not_available":"offline",
+        "device_class":"temperature",
+        "state_class":"measurement",
+        "unit_of_measurement":"\u00b0C",
+        "suggested_display_precision":1,
+        "device":{
+            "identifiers":["aquarium-controller"],
+            "name":"AquariumController",
+            "manufacturer":"DIY",
+            "model":"ESP32 Aquarium Controller"
+        },
+        "origin":{
+            "name":"AquariumController",
+            "support_url":"https://github.com/nagahelmic/AquariumController"
+        }
+    })json";
+
+    constexpr const char* RoomTemperatureDiscoveryPayload = R"json({
+        "name":"Room temperature",
+        "unique_id":"aquarium_controller_room_temperature",
+        "default_entity_id":"sensor.aquarium_room_temperature",
+        "state_topic":"aquarium/temperature/room",
+        "availability_topic":"aquarium/status/availability",
+        "payload_available":"online",
+        "payload_not_available":"offline",
+        "device_class":"temperature",
+        "state_class":"measurement",
+        "unit_of_measurement":"\u00b0C",
+        "suggested_display_precision":1,
+        "device":{
+            "identifiers":["aquarium-controller"],
+            "name":"AquariumController",
+            "manufacturer":"DIY",
+            "model":"ESP32 Aquarium Controller"
+        },
+        "origin":{
+            "name":"AquariumController",
+            "support_url":"https://github.com/nagahelmic/AquariumController"
+        }
+    })json";
+
+    constexpr const char* AlarmDiscoveryPayload = R"json({
+        "name":"Alarm",
+        "unique_id":"aquarium_controller_alarm",
+        "default_entity_id":"binary_sensor.aquarium_alarm",
+        "state_topic":"aquarium/status/alarm",
+        "availability_topic":"aquarium/status/availability",
+        "payload_available":"online",
+        "payload_not_available":"offline",
+        "payload_on":"ON",
+        "payload_off":"OFF",
+        "device_class":"problem",
+        "device":{
+            "identifiers":["aquarium-controller"],
+            "name":"AquariumController",
+            "manufacturer":"DIY",
+            "model":"ESP32 Aquarium Controller"
+        },
+        "origin":{
+            "name":"AquariumController",
+            "support_url":"https://github.com/nagahelmic/AquariumController"
+        }
+    })json";
+
     constexpr uint8_t PublishQos = 1;
     constexpr bool RetainMessages = true;
 }
@@ -35,6 +113,7 @@ void MqttConnection::begin(
         (void)sessionPresent;
 
         Serial.println("MQTT connected");
+        publishDiscovery();
         client.publish(
             AvailabilityTopic,
             PublishQos,
@@ -98,6 +177,32 @@ bool MqttConnection::publish(
 bool MqttConnection::isConnected()
 {
     return client.connected();
+}
+
+bool MqttConnection::publishDiscovery()
+{
+    const bool waterPublished = client.publish(
+        WaterTemperatureDiscoveryTopic,
+        PublishQos,
+        RetainMessages,
+        WaterTemperatureDiscoveryPayload
+    ) >= 0;
+
+    const bool roomPublished = client.publish(
+        RoomTemperatureDiscoveryTopic,
+        PublishQos,
+        RetainMessages,
+        RoomTemperatureDiscoveryPayload
+    ) >= 0;
+
+    const bool alarmPublished = client.publish(
+        AlarmDiscoveryTopic,
+        PublishQos,
+        RetainMessages,
+        AlarmDiscoveryPayload
+    ) >= 0;
+
+    return waterPublished && roomPublished && alarmPublished;
 }
 
 bool MqttConnection::publishTemperature(

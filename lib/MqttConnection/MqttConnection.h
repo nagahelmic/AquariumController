@@ -26,6 +26,8 @@ public:
     bool isConnected();
 
 private:
+    bool publishDiscovery();
+
     bool publishTemperature(
         const char* topic,
         const TemperatureReading& reading
