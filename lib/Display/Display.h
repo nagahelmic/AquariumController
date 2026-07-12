@@ -22,6 +22,14 @@ private:
         const TemperatureReading& reading,
         bool alarmActive
     );
+
+    void drawTemperatureColumn(
+    int16_t x,
+    int16_t y,
+    const char* label,
+    const TemperatureReading& reading,
+    bool alarmActive
+    );
     
     bool initialized = false;
     void drawWifiIcon(int16_t x, int16_t y, bool connected);

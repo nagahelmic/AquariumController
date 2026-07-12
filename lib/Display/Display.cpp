@@ -78,7 +78,7 @@ void Display::render(const DisplayData& data)
     drawTemperatureLine(
         0,
         0,
-        "T1",
+        "AKVA",
         data.waterTemperature1,
         data.waterTemperature1Alarm
     );
@@ -86,7 +86,7 @@ void Display::render(const DisplayData& data)
     drawTemperatureLine(
         0,
         24,
-        "T2",
+        "MIST",
         data.waterTemperature2,
         data.waterTemperature2Alarm
     );
@@ -108,25 +108,26 @@ void Display::drawTemperatureLine(
     oled.setCursor(x, y);
 
     oled.print(label);
-    oled.print(": ");
+    oled.print(" ");
 
     if (reading.valid)
     {
         oled.print(reading.valueCelsius, 1);
-        oled.println(" C");
+        oled.print("C");
     }
     else
     {
-        oled.println("ERROR");
+        oled.print("ERR");
     }
 
     if (alarmActive)
     {
-        oled.setTextSize(1);
-        oled.setCursor(AlarmIconX, y + AlarmIconYOffset);
+        oled.setCursor(120, y);
         oled.print("!");
     }
 }
+
+
 
 void Display::drawWifiIcon(int16_t x, int16_t y, bool connected)
 {

@@ -15,7 +15,9 @@ public:
 
 private:
     String buildStatusJson() const;
+    WebData getWebDataSnapshot() const;
 
     AsyncWebServer server;
     WebData webData;
+    mutable portMUX_TYPE webDataMutex = portMUX_INITIALIZER_UNLOCKED;
 };

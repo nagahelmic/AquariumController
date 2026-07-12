@@ -37,69 +37,81 @@ void WebInterface::begin()
 
 void WebInterface::update(const WebData& data)
 {
+    portENTER_CRITICAL(&webDataMutex);
     webData = data;
+    portEXIT_CRITICAL(&webDataMutex);
 }
 
 String WebInterface::buildStatusJson() const
 {
+    const WebData snapshot = getWebDataSnapshot();
     String json;
 
     json += "{";
 
     json += "\"waterTemperature1\":{";
     json += "\"valueCelsius\":";
-    json += (webData.waterTemperature1.valid ? String(webData.waterTemperature1.valueCelsius, 1) : "null");
+    json += (snapshot.waterTemperature1.valid ? String(snapshot.waterTemperature1.valueCelsius, 1) : "null");
     json += ",\"valid\":";
-    json += (webData.waterTemperature1.valid ? "true" : "false");
+    json += (snapshot.waterTemperature1.valid ? "true" : "false");
     json += "},";
 
     json += "\"waterTemperature2\":{";
     json += "\"valueCelsius\":";
-    json += (webData.waterTemperature2.valid ? String(webData.waterTemperature2.valueCelsius, 1) : "null");
+    json += (snapshot.waterTemperature2.valid ? String(snapshot.waterTemperature2.valueCelsius, 1) : "null");
     json += ",\"valid\":";
-    json += (webData.waterTemperature2.valid ? "true" : "false");
+    json += (snapshot.waterTemperature2.valid ? "true" : "false");
     json += "},";
 
     json += "\"wifiConnected\":";
-    json += (webData.wifiConnected ? "true" : "false");
+    json += (snapshot.wifiConnected ? "true" : "false");
     json += ",";
 
     json += "\"uptimeSeconds\":";
-    json += String(webData.uptimeSeconds);
+    json += String(snapshot.uptimeSeconds);
     json += ",";
 
     json += "\"alarm\":{";
 
     json += "\"active\":";
-    json += (webData.alarmState.active ? "true" : "false");
+    json += (snapshot.alarmState.active ? "true" : "false");
     json += ",";
 
     json += "\"waterTemperature1Low\":";
-    json += webData.alarmState.waterTemperature1Low ? "true" : "false";
+    json += snapshot.alarmState.waterTemperature1Low ? "true" : "false";
     json += ",";
 
     json += "\"waterTemperature1High\":";
-    json += webData.alarmState.waterTemperature1High ? "true" : "false";
+    json += snapshot.alarmState.waterTemperature1High ? "true" : "false";
     json += ",";
 
     json += "\"waterTemperature1Invalid\":";
-    json += webData.alarmState.waterTemperature1Invalid ? "true" : "false";
+    json += snapshot.alarmState.waterTemperature1Invalid ? "true" : "false";
     json += ",";
 
     json += "\"waterTemperature2Low\":";
-    json += webData.alarmState.waterTemperature2Low ? "true" : "false";
+    json += snapshot.alarmState.waterTemperature2Low ? "true" : "false";
     json += ",";
 
     json += "\"waterTemperature2High\":";
-    json += webData.alarmState.waterTemperature2High ? "true" : "false";
+    json += snapshot.alarmState.waterTemperature2High ? "true" : "false";
     json += ",";
 
     json += "\"waterTemperature2Invalid\":";
-    json += webData.alarmState.waterTemperature2Invalid ? "true" : "false";
+    json += snapshot.alarmState.waterTemperature2Invalid ? "true" : "false";
 
     json += "}";
 
     json += "}";
 
     return json;
+}
+
+WebData WebInterface::getWebDataSnapshot() const
+{
+    portENTER_CRITICAL(&webDataMutex);
+    const WebData snapshot = webData;
+    portEXIT_CRITICAL(&webDataMutex);
+
+    return snapshot;
 }
