@@ -13,11 +13,11 @@ namespace Config
     {
         uint32_t measurementIntervalMs = 1000;
 
-        uint8_t waterSensor1Address[8] = {
+        uint8_t waterSensorAddress[8] = {
             0x28, 0x44, 0x9F, 0xE0, 0x42, 0x25, 0x06, 0xBB
         };
 
-        uint8_t waterSensor2Address[8] = {
+        uint8_t roomSensorAddress[8] = {
             0x28, 0x8A, 0x53, 0x31, 0x7B, 0x24, 0x0B, 0xD3
         };
     };

@@ -6,19 +6,19 @@ async function loadStatus() {
         updateAlarmBanner(data.alarm);
 
         updateTemperature(
-            'temperature1',
-            'temperature1Status',
-            data.waterTemperature1,
+            'waterTemperature',
+            'waterTemperatureStatus',
+            data.waterTemperature,
             data.alarm,
-            1
+            'waterTemperature'
         );
 
         updateTemperature(
-            'temperature2',
-            'temperature2Status',
-            data.waterTemperature2,
+            'roomTemperature',
+            'roomTemperatureStatus',
+            data.roomTemperature,
             data.alarm,
-            2
+            'roomTemperature'
         );
 
         document.getElementById('wifiStatus').textContent =
@@ -31,7 +31,7 @@ async function loadStatus() {
     }
 }
 
-function updateTemperature(valueElementId, statusElementId, reading, alarm, sensorNumber) {
+function updateTemperature(valueElementId, statusElementId, reading, alarm, alarmPrefix) {
     const valueElement = document.getElementById(valueElementId);
     const statusElement = document.getElementById(statusElementId);
 
@@ -46,7 +46,7 @@ function updateTemperature(valueElementId, statusElementId, reading, alarm, sens
 
     valueElement.textContent = `${reading.valueCelsius.toFixed(1)} °C`;
 
-    const alarmText = getTemperatureAlarmText(alarm, sensorNumber);
+    const alarmText = getTemperatureAlarmText(alarm, alarmPrefix);
 
     if (alarmText) {
         statusElement.textContent = alarmText;
@@ -66,33 +66,17 @@ function updateAlarmBanner(alarm) {
     }
 }
 
-function getTemperatureAlarmText(alarm, sensorNumber) {
-    if (sensorNumber === 1) {
-        if (alarm.waterTemperature1Invalid) {
-            return 'Sensor error';
-        }
-
-        if (alarm.waterTemperature1Low) {
-            return 'Temperature too low';
-        }
-
-        if (alarm.waterTemperature1High) {
-            return 'Temperature too high';
-        }
+function getTemperatureAlarmText(alarm, prefix) {
+    if (alarm[`${prefix}Invalid`]) {
+        return 'Sensor error';
     }
 
-    if (sensorNumber === 2) {
-        if (alarm.waterTemperature2Invalid) {
-            return 'Sensor error';
-        }
+    if (alarm[`${prefix}Low`]) {
+        return 'Temperature too low';
+    }
 
-        if (alarm.waterTemperature2Low) {
-            return 'Temperature too low';
-        }
-
-        if (alarm.waterTemperature2High) {
-            return 'Temperature too high';
-        }
+    if (alarm[`${prefix}High`]) {
+        return 'Temperature too high';
     }
 
     return '';

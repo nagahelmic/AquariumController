@@ -40,8 +40,8 @@ void Application::update()
     {
         alarm.update(
             settings.alarm,
-            temperature.getWaterTemperature1(),
-            temperature.getWaterTemperature2()
+            temperature.getWaterTemperature(),
+            temperature.getRoomTemperature()
         );
     }
 
@@ -59,26 +59,26 @@ void Application::updateDisplayData()
 {
     const AlarmState alarmState = alarm.getState();
 
-    displayData.waterTemperature1 = temperature.getWaterTemperature1();
-    displayData.waterTemperature2 = temperature.getWaterTemperature2();
+    displayData.waterTemperature = temperature.getWaterTemperature();
+    displayData.roomTemperature = temperature.getRoomTemperature();
 
     displayData.wifiConnected = wifi.isConnected();
 
-    displayData.waterTemperature1Alarm =
-        alarmState.waterTemperature1Low ||
-        alarmState.waterTemperature1High ||
-        alarmState.waterTemperature1Invalid;
+    displayData.waterTemperatureAlarm =
+        alarmState.waterTemperatureLow ||
+        alarmState.waterTemperatureHigh ||
+        alarmState.waterTemperatureInvalid;
 
-    displayData.waterTemperature2Alarm =
-        alarmState.waterTemperature2Low ||
-        alarmState.waterTemperature2High ||
-        alarmState.waterTemperature2Invalid;
+    displayData.roomTemperatureAlarm =
+        alarmState.roomTemperatureLow ||
+        alarmState.roomTemperatureHigh ||
+        alarmState.roomTemperatureInvalid;
 }
 
 void Application::updateWebData()
 {
-    webData.waterTemperature1 = temperature.getWaterTemperature1();
-    webData.waterTemperature2 = temperature.getWaterTemperature2();
+    webData.waterTemperature = temperature.getWaterTemperature();
+    webData.roomTemperature = temperature.getRoomTemperature();
 
     webData.wifiConnected = wifi.isConnected();
     webData.uptimeSeconds = millis() / 1000;

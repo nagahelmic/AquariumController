@@ -17,8 +17,8 @@ public:
     void requestMeasurement(uint32_t now);
     bool update(uint32_t now, const Config::Temperature& config);
 
-    TemperatureReading getWaterTemperature1() const;
-    TemperatureReading getWaterTemperature2() const;
+    TemperatureReading getWaterTemperature() const;
+    TemperatureReading getRoomTemperature() const;
 
 private:
     TemperatureReading readSensor(const uint8_t* address);
@@ -29,8 +29,8 @@ private:
     OneWire oneWire;
     DallasTemperature sensors;
 
-    TemperatureReading waterTemperature1;
-    TemperatureReading waterTemperature2;
+    TemperatureReading waterTemperature;
+    TemperatureReading roomTemperature;
 
     uint32_t conversionStartedMs = 0;
     uint16_t conversionWaitMs = 0;

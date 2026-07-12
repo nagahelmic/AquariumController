@@ -4,12 +4,12 @@
 
 struct DisplayData
 {
-    TemperatureReading waterTemperature1;
-    TemperatureReading waterTemperature2;
+    TemperatureReading waterTemperature;
+    TemperatureReading roomTemperature;
     
     bool wifiConnected = false;
 
-    bool waterTemperature1Alarm = false;
-    bool waterTemperature2Alarm = false;
+    bool waterTemperatureAlarm = false;
+    bool roomTemperatureAlarm = false;
 };
 

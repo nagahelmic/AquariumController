@@ -51,22 +51,22 @@ bool Temperature::update(
         return false;
     }
 
-    waterTemperature1 = readSensor(config.waterSensor1Address);
-    waterTemperature2 = readSensor(config.waterSensor2Address);
+    waterTemperature = readSensor(config.waterSensorAddress);
+    roomTemperature = readSensor(config.roomSensorAddress);
 
     conversionInProgress = false;
 
     return true;
 }
 
-TemperatureReading Temperature::getWaterTemperature1() const
+TemperatureReading Temperature::getWaterTemperature() const
 {
-    return waterTemperature1;
+    return waterTemperature;
 }
 
-TemperatureReading Temperature::getWaterTemperature2() const
+TemperatureReading Temperature::getRoomTemperature() const
 {
-    return waterTemperature2;
+    return roomTemperature;
 }
 
 TemperatureReading Temperature::readSensor(const uint8_t* address)

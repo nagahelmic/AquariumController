@@ -79,16 +79,16 @@ void Display::render(const DisplayData& data)
         0,
         0,
         "AKVA",
-        data.waterTemperature1,
-        data.waterTemperature1Alarm
+        data.waterTemperature,
+        data.waterTemperatureAlarm
     );
 
     drawTemperatureLine(
         0,
         24,
         "MIST",
-        data.waterTemperature2,
-        data.waterTemperature2Alarm
+        data.roomTemperature,
+        data.roomTemperatureAlarm
     );
 
     drawWifiIcon(WifiIconX, WifiIconY, data.wifiConnected);

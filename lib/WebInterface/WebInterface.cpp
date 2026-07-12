@@ -49,18 +49,18 @@ String WebInterface::buildStatusJson() const
 
     json += "{";
 
-    json += "\"waterTemperature1\":{";
+    json += "\"waterTemperature\":{";
     json += "\"valueCelsius\":";
-    json += (snapshot.waterTemperature1.valid ? String(snapshot.waterTemperature1.valueCelsius, 1) : "null");
+    json += (snapshot.waterTemperature.valid ? String(snapshot.waterTemperature.valueCelsius, 1) : "null");
     json += ",\"valid\":";
-    json += (snapshot.waterTemperature1.valid ? "true" : "false");
+    json += (snapshot.waterTemperature.valid ? "true" : "false");
     json += "},";
 
-    json += "\"waterTemperature2\":{";
+    json += "\"roomTemperature\":{";
     json += "\"valueCelsius\":";
-    json += (snapshot.waterTemperature2.valid ? String(snapshot.waterTemperature2.valueCelsius, 1) : "null");
+    json += (snapshot.roomTemperature.valid ? String(snapshot.roomTemperature.valueCelsius, 1) : "null");
     json += ",\"valid\":";
-    json += (snapshot.waterTemperature2.valid ? "true" : "false");
+    json += (snapshot.roomTemperature.valid ? "true" : "false");
     json += "},";
 
     json += "\"wifiConnected\":";
@@ -77,28 +77,28 @@ String WebInterface::buildStatusJson() const
     json += (snapshot.alarmState.active ? "true" : "false");
     json += ",";
 
-    json += "\"waterTemperature1Low\":";
-    json += snapshot.alarmState.waterTemperature1Low ? "true" : "false";
+    json += "\"waterTemperatureLow\":";
+    json += snapshot.alarmState.waterTemperatureLow ? "true" : "false";
     json += ",";
 
-    json += "\"waterTemperature1High\":";
-    json += snapshot.alarmState.waterTemperature1High ? "true" : "false";
+    json += "\"waterTemperatureHigh\":";
+    json += snapshot.alarmState.waterTemperatureHigh ? "true" : "false";
     json += ",";
 
-    json += "\"waterTemperature1Invalid\":";
-    json += snapshot.alarmState.waterTemperature1Invalid ? "true" : "false";
+    json += "\"waterTemperatureInvalid\":";
+    json += snapshot.alarmState.waterTemperatureInvalid ? "true" : "false";
     json += ",";
 
-    json += "\"waterTemperature2Low\":";
-    json += snapshot.alarmState.waterTemperature2Low ? "true" : "false";
+    json += "\"roomTemperatureLow\":";
+    json += snapshot.alarmState.roomTemperatureLow ? "true" : "false";
     json += ",";
 
-    json += "\"waterTemperature2High\":";
-    json += snapshot.alarmState.waterTemperature2High ? "true" : "false";
+    json += "\"roomTemperatureHigh\":";
+    json += snapshot.alarmState.roomTemperatureHigh ? "true" : "false";
     json += ",";
 
-    json += "\"waterTemperature2Invalid\":";
-    json += snapshot.alarmState.waterTemperature2Invalid ? "true" : "false";
+    json += "\"roomTemperatureInvalid\":";
+    json += snapshot.alarmState.roomTemperatureInvalid ? "true" : "false";
 
     json += "}";
 

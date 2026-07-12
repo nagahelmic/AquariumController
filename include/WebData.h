@@ -7,8 +7,8 @@
 
 struct WebData
 {
-    TemperatureReading waterTemperature1;
-    TemperatureReading waterTemperature2;
+    TemperatureReading waterTemperature;
+    TemperatureReading roomTemperature;
 
     bool wifiConnected = false;
     uint32_t uptimeSeconds = 0;

@@ -2,8 +2,8 @@
 
 void Alarm::update(
     const Config::Alarm& config,
-    const TemperatureReading& waterTemperature1,
-    const TemperatureReading& waterTemperature2
+    const TemperatureReading& waterTemperature,
+    const TemperatureReading& roomTemperature
 )
 {
     state = AlarmState{};
@@ -14,30 +14,30 @@ void Alarm::update(
     }
 
     evaluateTemperature(
-        waterTemperature1,
+        waterTemperature,
         config.minTemperature,
         config.maxTemperature,
-        state.waterTemperature1Low,
-        state.waterTemperature1High,
-        state.waterTemperature1Invalid
+        state.waterTemperatureLow,
+        state.waterTemperatureHigh,
+        state.waterTemperatureInvalid
     );
 
     evaluateTemperature(
-        waterTemperature2,
+        roomTemperature,
         config.minTemperature,
         config.maxTemperature,
-        state.waterTemperature2Low,
-        state.waterTemperature2High,
-        state.waterTemperature2Invalid
+        state.roomTemperatureLow,
+        state.roomTemperatureHigh,
+        state.roomTemperatureInvalid
     );
 
     state.active =
-        state.waterTemperature1Low ||
-        state.waterTemperature1High ||
-        state.waterTemperature1Invalid ||
-        state.waterTemperature2Low ||
-        state.waterTemperature2High ||
-        state.waterTemperature2Invalid;
+        state.waterTemperatureLow ||
+        state.waterTemperatureHigh ||
+        state.waterTemperatureInvalid ||
+        state.roomTemperatureLow ||
+        state.roomTemperatureHigh ||
+        state.roomTemperatureInvalid;
 }
 
 AlarmState Alarm::getState() const
