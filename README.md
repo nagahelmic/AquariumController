@@ -1,173 +1,85 @@
-![Platform](https://img.shields.io/badge/Platform-ESP32-blue)
-![Framework](https://img.shields.io/badge/Framework-Arduino-green)
-![IDE](https://img.shields.io/badge/IDE-PlatformIO-orange)
-![Status](https://img.shields.io/badge/Status-In_Development-yellow)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
 # 🐠 AquariumController
 
-> **A modular ESP32-based aquarium controller designed for long-term development.**
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
+![Platform](https://img.shields.io/badge/Platform-ESP32-blue)
+![Framework](https://img.shields.io/badge/Framework-Arduino-green)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
----
+A modular ESP32-based aquarium monitoring controller.
 
-# 🚧 Project Status
+AquariumController monitors two water temperatures, displays the current
+state on an OLED screen and provides a local web dashboard.
 
-## Current Status
+## Features
 
-Current project version:
+- Two DS18B20 temperature sensors
+- SH1106 OLED display
+- Wi-Fi with automatic reconnection
+- Responsive local web dashboard
+- JSON status API
+- Low, high and invalid-sensor alarms
+- OTA firmware updates
+- Non-blocking modular firmware
 
-**v0.9.0 – Alarm System**
+## Hardware
 
-Completed modules:
+- ESP32 DevKitC, 38-pin
+- 2× waterproof DS18B20
+- 1.3-inch SH1106 I2C OLED
+- 4.7 kΩ pull-up resistor
 
-- ✅ Version
-- ✅ Config
-- ✅ Pins
-- ✅ Application
-- ✅ Display
-- ✅ Timing
-- ✅ Temperature
-- ✅ Wi-Fi
-- ✅ Web Interface
-- ✅ OTA Updates
-- ✅ Alarm System
+See [HARDWARE.md](docs/HARDWARE.md) for wiring and sensor configuration.
 
-Next milestone:
+## Getting started
 
-**v1.0.0 – First Stable Release**
+1. Copy `include/Secrets.example.h` to `include/Secrets.h`.
+2. Enter the Wi-Fi credentials and OTA password.
+3. Update the DS18B20 addresses in `include/Config.h` if necessary.
+4. Upload the firmware:
 
-
----
-## OTA Upload
-
-OTA upload is available through the `esp32dev_ota` PlatformIO environment.
-
-The current OTA upload target uses the ESP32 IP address:
-
-```ini
-upload_port = your_assigned_ip_addres
-```
-If the router assigns a different IP address, upload_port must be updated.
-
-For stable OTA uploads, it is recommended to configure DHCP reservation for the ESP32 in the router.
-
----
-# ✨ Planned Features
-
-## Core
-
-- 🌡 Water temperature monitoring
-- 📺 OLED display
-- 📶 Wi-Fi connectivity
-- 🌐 Embedded web interface
-
-## Monitoring
-
-- 📈 Temperature history
-- 📊 Graphs
-- 📝 Logging
-
-## Control
-
-- 🔥 Heater control
-- 💡 Lighting control
-- 🌬 Cooling fan
-- 🚨 Temperature alarms
-
-## Integration
-
-- ☁ OTA firmware updates
-- 📡 MQTT
-- 🏠 Home Assistant
-
----
-
-# 🔧 Current Hardware
-
-| Component | Status |
-|-----------|:------:|
-| ESP32 DevKitC (38 pin) | ✅ |
-| 2 × DS18B20 | ✅ |
-| 1.3" OLED SH1106 (I2C) | ✅ |
-
----
-
-# 🛠 Technologies
-
-| Technology | Purpose |
-|------------|---------|
-| ESP32 | Main controller |
-| Arduino Framework | Firmware |
-| PlatformIO | Build system |
-| Visual Studio Code | IDE |
-| Git | Version control |
-| GitHub | Repository |
-| Markdown | Documentation |
-
----
-
-# 📂 Project Structure
-
-```
-AquariumController
-│
-├── docs
-├── include
-├── lib
-├── src
-├── test
-└── data
+```bash
+pio run --environment esp32dev --target upload
 ```
 
----
+5. Upload the web interface to LittleFS:
 
-# 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| ROADMAP.md | Project roadmap |
-| REQUIREMENTS.md | Functional requirements |
-| ARCHITECTURE.md | Software architecture |
-| HARDWARE.md | Hardware overview |
-| DECISIONS.md | Architecture Decision Records |
-| CHANGELOG.md | Project history |
-| IDEAS.md | Future ideas |
-
----
-
-# 🏗 Development Workflow
-
-```
-Requirements
-      ↓
-Architecture
-      ↓
-Implementation
-      ↓
-Testing
-      ↓
-Commit
-      ↓
-Documentation
+```bash
+pio run --environment esp32dev --target uploadfs
 ```
 
----
+The assigned IP address is printed to the serial monitor. Open it in a browser
+to access the dashboard.
 
-# 📌 Project Principles
+## OTA updates
 
-This project follows several simple rules:
+Set the ESP32 IP address in the `esp32dev_ota` environment in `platformio.ini`
+and provide the OTA password:
 
-- 🎯 Design before implementation
-- 📦 One module = one responsibility
-- 🧪 Test every module independently
-- 🔄 Small incremental changes
-- 📚 Keep documentation up to date
-- 🚫 No "magic numbers"
-- ⚙ Configuration stored in one place
-- 🧹 Keep `main.cpp` as small as possible
+```powershell
+$env:AQUARIUM_OTA_PASSWORD = "YOUR_OTA_PASSWORD"
+pio run --environment esp32dev_ota --target upload
+```
 
----
+A DHCP reservation is recommended so the device keeps the same IP address.
 
+## Version 1.0.0
 
-# 📄 License
+The first stable release includes temperature monitoring, OLED and web
+output, Wi-Fi reconnection, alarms and OTA updates.
+
+Equipment control, historical data, MQTT and Home Assistant integration are
+planned for future versions.
+
+## Documentation
+
+- [Roadmap](docs/ROADMAP.md)
+- [Requirements](docs/REQUIREMENTS.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Hardware](docs/HARDWARE.md)
+- [Architecture decisions](docs/DECISIONS.md)
+- [Changelog](docs/CHANGELOG.md)
+
+## License
 
 MIT License
