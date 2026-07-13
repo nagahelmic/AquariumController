@@ -10,6 +10,5 @@ struct DisplayData
     bool wifiConnected = false;
 
     bool waterTemperatureAlarm = false;
-    bool roomTemperatureAlarm = false;
 };
 

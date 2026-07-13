@@ -46,8 +46,7 @@ void Application::update()
     {
         alarm.update(
             settings.alarm,
-            temperature.getWaterTemperature(),
-            temperature.getRoomTemperature()
+            temperature.getWaterTemperature()
         );
     }
 
@@ -83,11 +82,6 @@ void Application::updateDisplayData()
         alarmState.waterTemperatureLow ||
         alarmState.waterTemperatureHigh ||
         alarmState.waterTemperatureInvalid;
-
-    displayData.roomTemperatureAlarm =
-        alarmState.roomTemperatureLow ||
-        alarmState.roomTemperatureHigh ||
-        alarmState.roomTemperatureInvalid;
 }
 
 void Application::updateWebData()

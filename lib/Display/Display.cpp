@@ -88,7 +88,7 @@ void Display::render(const DisplayData& data)
         24,
         "MIST",
         data.roomTemperature,
-        data.roomTemperatureAlarm
+        false
     );
 
     drawWifiIcon(WifiIconX, WifiIconY, data.wifiConnected);

@@ -32,8 +32,8 @@ namespace Config
     {
         bool enabled = true;
 
-        float minTemperature = 22.0f;
-        float maxTemperature = 27.0f;
+        float minWaterTemperature = 22.0f;
+        float maxWaterTemperature = 27.0f;
     };
 
     struct Wifi

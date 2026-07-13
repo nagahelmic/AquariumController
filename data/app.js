@@ -16,9 +16,7 @@ async function loadStatus() {
         updateTemperature(
             'roomTemperature',
             'roomTemperatureStatus',
-            data.roomTemperature,
-            data.alarm,
-            'roomTemperature'
+            data.roomTemperature
         );
 
         document.getElementById('wifiStatus').textContent =
@@ -31,7 +29,7 @@ async function loadStatus() {
     }
 }
 
-function updateTemperature(valueElementId, statusElementId, reading, alarm, alarmPrefix) {
+function updateTemperature(valueElementId, statusElementId, reading, alarm = null, alarmPrefix = null) {
     const valueElement = document.getElementById(valueElementId);
     const statusElement = document.getElementById(statusElementId);
 
@@ -46,7 +44,9 @@ function updateTemperature(valueElementId, statusElementId, reading, alarm, alar
 
     valueElement.textContent = `${reading.valueCelsius.toFixed(1)} °C`;
 
-    const alarmText = getTemperatureAlarmText(alarm, alarmPrefix);
+    const alarmText = alarm && alarmPrefix
+        ? getTemperatureAlarmText(alarm, alarmPrefix)
+        : '';
 
     if (alarmText) {
         statusElement.textContent = alarmText;
