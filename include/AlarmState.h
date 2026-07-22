@@ -7,4 +7,5 @@ struct AlarmState
     bool waterTemperatureLow = false;
     bool waterTemperatureHigh = false;
     bool waterTemperatureInvalid = false;
+    bool roomTemperatureInvalid = false;
 };

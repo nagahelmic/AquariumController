@@ -87,6 +87,10 @@ String WebInterface::buildStatusJson() const
 
     json += "\"waterTemperatureInvalid\":";
     json += snapshot.alarmState.waterTemperatureInvalid ? "true" : "false";
+    json += ",";
+
+    json += "\"roomTemperatureInvalid\":";
+    json += snapshot.alarmState.roomTemperatureInvalid ? "true" : "false";
 
     json += "}";
 

@@ -46,7 +46,8 @@ void Application::update()
     {
         alarm.update(
             settings.alarm,
-            temperature.getWaterTemperature()
+            temperature.getWaterTemperature(),
+            temperature.getRoomTemperature()
         );
     }
 

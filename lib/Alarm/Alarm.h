@@ -9,7 +9,8 @@ class Alarm
 public:
     void update(
         const Config::Alarm& config,
-        const TemperatureReading& waterTemperature
+        const TemperatureReading& waterTemperature,
+        const TemperatureReading& roomTemperature
     );
 
     AlarmState getState() const;

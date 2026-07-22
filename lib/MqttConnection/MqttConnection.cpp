@@ -8,6 +8,8 @@ namespace
     constexpr const char* WaterTemperatureTopic = "aquarium/temperature/water";
     constexpr const char* RoomTemperatureTopic = "aquarium/temperature/room";
     constexpr const char* AlarmTopic = "aquarium/status/alarm";
+    constexpr const char* WaterAlarmStateTopic = "aquarium/status/alarm/water";
+    constexpr const char* RoomAlarmStateTopic = "aquarium/status/alarm/room";
 
     constexpr const char* WaterTemperatureDiscoveryTopic =
         "homeassistant/sensor/aquarium_controller_water_temperature/config";
@@ -15,6 +17,10 @@ namespace
         "homeassistant/sensor/aquarium_controller_room_temperature/config";
     constexpr const char* AlarmDiscoveryTopic =
         "homeassistant/binary_sensor/aquarium_controller_alarm/config";
+    constexpr const char* WaterAlarmStateDiscoveryTopic =
+        "homeassistant/sensor/aquarium_controller_water_alarm_state/config";
+    constexpr const char* RoomAlarmStateDiscoveryTopic =
+        "homeassistant/sensor/aquarium_controller_room_alarm_state/config";
 
     constexpr const char* WaterTemperatureDiscoveryPayload = R"json({
         "name":"Water temperature",
@@ -87,8 +93,79 @@ namespace
         }
     })json";
 
+    constexpr const char* WaterAlarmStateDiscoveryPayload = R"json({
+        "name":"Water alarm state",
+        "unique_id":"aquarium_controller_water_alarm_state",
+        "default_entity_id":"sensor.aquarium_water_alarm_state",
+        "state_topic":"aquarium/status/alarm/water",
+        "availability_topic":"aquarium/status/availability",
+        "payload_available":"online",
+        "payload_not_available":"offline",
+        "device_class":"enum",
+        "options":["OK","Low temperature","High temperature","Sensor error"],
+        "icon":"mdi:thermometer-alert",
+        "device":{
+            "identifiers":["aquarium-controller"],
+            "name":"AquariumController",
+            "manufacturer":"DIY",
+            "model":"ESP32 Aquarium Controller"
+        },
+        "origin":{
+            "name":"AquariumController",
+            "support_url":"https://github.com/nagahelmic/AquariumController"
+        }
+    })json";
+
+    constexpr const char* RoomAlarmStateDiscoveryPayload = R"json({
+        "name":"Room alarm state",
+        "unique_id":"aquarium_controller_room_alarm_state",
+        "default_entity_id":"sensor.aquarium_room_alarm_state",
+        "state_topic":"aquarium/status/alarm/room",
+        "availability_topic":"aquarium/status/availability",
+        "payload_available":"online",
+        "payload_not_available":"offline",
+        "device_class":"enum",
+        "options":["OK","Sensor error"],
+        "icon":"mdi:thermometer-alert",
+        "device":{
+            "identifiers":["aquarium-controller"],
+            "name":"AquariumController",
+            "manufacturer":"DIY",
+            "model":"ESP32 Aquarium Controller"
+        },
+        "origin":{
+            "name":"AquariumController",
+            "support_url":"https://github.com/nagahelmic/AquariumController"
+        }
+    })json";
+
     constexpr uint8_t PublishQos = 1;
     constexpr bool RetainMessages = true;
+
+    const char* getWaterAlarmState(const AlarmState& alarmState)
+    {
+        if (alarmState.waterTemperatureInvalid)
+        {
+            return "Sensor error";
+        }
+
+        if (alarmState.waterTemperatureLow)
+        {
+            return "Low temperature";
+        }
+
+        if (alarmState.waterTemperatureHigh)
+        {
+            return "High temperature";
+        }
+
+        return "OK";
+    }
+
+    const char* getRoomAlarmState(const AlarmState& alarmState)
+    {
+        return alarmState.roomTemperatureInvalid ? "Sensor error" : "OK";
+    }
 }
 
 void MqttConnection::begin(
@@ -171,7 +248,25 @@ bool MqttConnection::publish(
         alarmState.active ? "ON" : "OFF"
     ) >= 0;
 
-    return waterPublished && roomPublished && alarmPublished;
+    const bool waterAlarmStatePublished = client.publish(
+        WaterAlarmStateTopic,
+        PublishQos,
+        RetainMessages,
+        getWaterAlarmState(alarmState)
+    ) >= 0;
+
+    const bool roomAlarmStatePublished = client.publish(
+        RoomAlarmStateTopic,
+        PublishQos,
+        RetainMessages,
+        getRoomAlarmState(alarmState)
+    ) >= 0;
+
+    return waterPublished &&
+        roomPublished &&
+        alarmPublished &&
+        waterAlarmStatePublished &&
+        roomAlarmStatePublished;
 }
 
 bool MqttConnection::isConnected()
@@ -202,7 +297,25 @@ bool MqttConnection::publishDiscovery()
         AlarmDiscoveryPayload
     ) >= 0;
 
-    return waterPublished && roomPublished && alarmPublished;
+    const bool waterAlarmStatePublished = client.publish(
+        WaterAlarmStateDiscoveryTopic,
+        PublishQos,
+        RetainMessages,
+        WaterAlarmStateDiscoveryPayload
+    ) >= 0;
+
+    const bool roomAlarmStatePublished = client.publish(
+        RoomAlarmStateDiscoveryTopic,
+        PublishQos,
+        RetainMessages,
+        RoomAlarmStateDiscoveryPayload
+    ) >= 0;
+
+    return waterPublished &&
+        roomPublished &&
+        alarmPublished &&
+        waterAlarmStatePublished &&
+        roomAlarmStatePublished;
 }
 
 bool MqttConnection::publishTemperature(
